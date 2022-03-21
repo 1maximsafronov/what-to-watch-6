@@ -68,7 +68,7 @@ const PageContent = (props) => {
 };
 
 PageContent.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.string)
+  movies: PropTypes.array.isRequired
 };
 
 export default PageContent;

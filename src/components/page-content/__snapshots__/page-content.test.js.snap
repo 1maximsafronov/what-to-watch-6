@@ -126,9 +126,7 @@ exports[`Render PageContent 1`] = `
           className="small-movie-card__image"
         >
           <img
-            alt="Fantastic Beasts: The Crimes of Grindelwald"
             height="175"
-            src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="280"
           />
         </div>
@@ -138,9 +136,7 @@ exports[`Render PageContent 1`] = `
           <a
             className="small-movie-card__link"
             href="movie-page.html"
-          >
-            Fantastic Beasts: The Crimes of Grindelwald
-          </a>
+          />
         </h3>
       </article>
       <article
@@ -150,9 +146,7 @@ exports[`Render PageContent 1`] = `
           className="small-movie-card__image"
         >
           <img
-            alt="Bohemian Rhapsody"
             height="175"
-            src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="280"
           />
         </div>
@@ -162,9 +156,7 @@ exports[`Render PageContent 1`] = `
           <a
             className="small-movie-card__link"
             href="movie-page.html"
-          >
-            Bohemian Rhapsody
-          </a>
+          />
         </h3>
       </article>
       <article
@@ -174,9 +166,7 @@ exports[`Render PageContent 1`] = `
           className="small-movie-card__image"
         >
           <img
-            alt="Macbeth"
             height="175"
-            src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="280"
           />
         </div>
@@ -186,9 +176,7 @@ exports[`Render PageContent 1`] = `
           <a
             className="small-movie-card__link"
             href="movie-page.html"
-          >
-            Macbeth
-          </a>
+          />
         </h3>
       </article>
       <article
@@ -198,9 +186,7 @@ exports[`Render PageContent 1`] = `
           className="small-movie-card__image"
         >
           <img
-            alt="Aviator"
             height="175"
-            src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="280"
           />
         </div>
@@ -210,9 +196,7 @@ exports[`Render PageContent 1`] = `
           <a
             className="small-movie-card__link"
             href="movie-page.html"
-          >
-            Aviator
-          </a>
+          />
         </h3>
       </article>
     </div>
