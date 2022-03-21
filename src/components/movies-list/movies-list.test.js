@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PageContent from "./page-content.jsx";
+import MoviesList from "./movies-list";
+
 
 const mockMovies = [
   {
@@ -13,10 +14,11 @@ const mockMovies = [
   }
 ];
 
-
-it(`Render PageContent`, () =>{
+it(`список фильмов MoviesList отрисовывается верно`, () =>{
   const tree = renderer.create(
-      <PageContent movies={mockMovies}/>
+      <MoviesList
+        movies={mockMovies}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
