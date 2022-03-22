@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const MovieCard = () => {
   return (
     <section className="movie-card">
