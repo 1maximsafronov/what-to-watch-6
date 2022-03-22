@@ -4,6 +4,7 @@ import MainPage from "../main-page/main-page.jsx";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 
 import MovieDetailsPage from "../movie-details-page/movie-details-page.jsx";
+import Player from "../player/player.jsx";
 
 const AppRoutes = {
   MAIN: `/`,
@@ -37,7 +38,7 @@ class App extends PureComponent {
             <h1>Страница с отзывом</h1>
           }/>
           <Route exact path={AppRoutes.PLAYER} element={
-            <h1>Страница плеера</h1>
+            <Player />
           }/>
         </Routes>
       </BrowserRouter>
