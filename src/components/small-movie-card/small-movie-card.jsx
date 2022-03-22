@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
+// import VideoPlayer from "../video-player/video-player.jsx";
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -11,35 +11,31 @@ class SmallMovieCard extends PureComponent {
     };
 
     this._videoPlayTimeout = null;
+
+    this._mouseEnterHandler = this._mouseEnterHandler.bind(this);
+    this._mouseLeaveHandler = this._mouseLeaveHandler.bind(this);
   }
 
   render() {
-    const {movie, onHover} = this.props;
+    // const {isVideoPlaying} = this.state;
+    const {movie} = this.props;
     const {name, previewImage} = movie;
+
     return (
-      <article
-        onMouseEnter={() => {
-          this._videoPlayTimeout = setTimeout(() => {
-            this.setState({isVideoPlaying: true});
-          }, 1000);
-          onHover(movie);
-        }}
-        onMouseLeave={()=>{
-          clearTimeout(this._videoPlayTimeout);
-          this.setState({isVideoPlaying: false});
-          onHover(null);
-        }}
-        className="small-movie-card catalog__movies-card"
+      <article className="small-movie-card catalog__movies-card"
+        onMouseEnter={this._mouseEnterHandler}
+        onMouseLeave={this._mouseLeaveHandler}
       >
         <div className="small-movie-card__image">
-          {/* <img src={previewImage} alt={name} width="280" height="175" /> */}
-          <VideoPlayer
+          <img src={previewImage} alt={name} width="280" height="175" />
+
+          {/* <VideoPlayer
             src={movie.previewVideoLink}
             poster={previewImage}
-            isPlaying={this.state.isVideoPlaying}
+            isPlaying={isVideoPlaying}
             muted={true}
             resetOnPause={true}
-          />
+          /> */}
         </div>
         <h3 className="small-movie-card__title">
           <a className="small-movie-card__link" href="movie-page.html">
@@ -48,6 +44,23 @@ class SmallMovieCard extends PureComponent {
         </h3>
       </article>
     );
+  }
+
+  _mouseEnterHandler() {
+    const {movie, onHover} = this.props;
+
+    this._videoPlayTimeout = setTimeout(() => {
+      this.setState({isVideoPlaying: true});
+    }, 1000);
+    onHover(movie);
+  }
+
+  _mouseLeaveHandler() {
+    const {onHover} = this.props;
+
+    clearTimeout(this._videoPlayTimeout);
+    this.setState({isVideoPlaying: false});
+    onHover(null);
   }
 }
 

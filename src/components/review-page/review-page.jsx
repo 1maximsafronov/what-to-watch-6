@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 
 const ReviewPage = () => {
   return (
@@ -26,11 +27,8 @@ const ReviewPage = () => {
             </ul>
           </nav>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock />
+
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">

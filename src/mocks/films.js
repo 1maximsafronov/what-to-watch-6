@@ -1,9 +1,9 @@
 export default [
   {
     "id": 1,
-    "name": `The Grand Budapest Hotel`,
+    "name": `Fantastic Beasts: The Crimes of Grindelwald`,
     "posterImage": `./img/the-grand-budapest-hotel-poster.jpg`,
-    "previewImage": `img/aviator.jpg`,
+    "previewImage": `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     "backgroundImage": `img/the-grand-budapest-hotel-bg.jpg`,
     "backgroundColor": `#ffffff`,
     "videoLink": `https://ak.picdn.net/shutterstock/videos/25348301/preview/stock-footage-business-new-customers-sale-and-people-concept-thousands-of-people-formed-qr-code-crowd-flight.mp4`,
@@ -19,9 +19,9 @@ export default [
     "isFavorite": false
   }, {
     "id": 2,
-    "name": `The Grand Budapest Hotel`,
+    "name": `Bohemian Rhapsody`,
     "posterImage": `img/the-grand-budapest-hotel-poster.jpg`,
-    "previewImage": `img/aviator.jpg`,
+    "previewImage": `img/bohemian-rhapsody.jpg`,
     "backgroundImage": `img/the-grand-budapest-hotel-bg.jpg`,
     "backgroundColor": `#ffffff`,
     "videoLink": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -37,9 +37,9 @@ export default [
     "isFavorite": false
   }, {
     "id": 3,
-    "name": `The Grand Budapest Hotel`,
+    "name": `Macbeth`,
     "posterImage": `img/the-grand-budapest-hotel-poster.jpg`,
-    "previewImage": `img/aviator.jpg`,
+    "previewImage": `img/macbeth.jpg`,
     "backgroundImage": `img/the-grand-budapest-hotel-bg.jpg`,
     "backgroundColor": `#ffffff`,
     "videoLink": `https://ak.picdn.net/shutterstock/videos/25348301/preview/stock-footage-business-new-customers-sale-and-people-concept-thousands-of-people-formed-qr-code-crowd-flight.mp4`,

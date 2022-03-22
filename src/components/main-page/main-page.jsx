@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 import Logo from "../logo/logo.jsx";
 import PageFooter from "../page-footer/page-footer.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 
 const MainPage = (props) => {
   const {movies} = props;
@@ -19,11 +20,7 @@ const MainPage = (props) => {
         <header className="page-header movie-card__head">
           <Logo />
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock />
         </header>
 
         <div className="movie-card__wrap">
