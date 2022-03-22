@@ -20,7 +20,7 @@ class App extends PureComponent {
           <Route exact path="/" element={
             <MainPage movies={movies}/>
           }/>
-          <Route exact path="/miveu" element={
+          <Route exact path="/movie" element={
             <MovieDetailsPage />
           }/>
         </Routes>
