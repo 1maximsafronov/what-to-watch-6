@@ -1,8 +1,14 @@
 import movies from "./mocks/films.js";
 import {extendObject} from "./utils/common.js";
 
+const mockMovies = [
+  ...movies,
+  ...movies.sort(() => Math.random() - 0.5),
+  ...movies.sort(() => Math.random() - 0.5)
+];
+
 const initialState = {
-  movies,
+  movies: mockMovies,
   currentGenreFilter: ``
 };
 
