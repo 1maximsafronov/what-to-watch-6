@@ -8,6 +8,7 @@ import PageFooter from "../page-footer/page-footer.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import MovieNav from "../movie-nav/movie-nav.jsx";
+import MovieCardBg from "../movie-card-bg/movie-card-bg.jsx";
 
 import movies from "../../mocks/films.js";
 
@@ -30,9 +31,8 @@ class MovieDetailsPage extends PureComponent {
       <Fragment>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
-            <div className="movie-card__bg">
-              <img src={backgroundImage} alt={name} />
-            </div>
+            <MovieCardBg src={backgroundImage} alt={name} />
+
             <h1 className="visually-hidden">WTW</h1>
             <header className="page-header movie-card__head">
               <Logo href="main.html"/>

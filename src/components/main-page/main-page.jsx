@@ -5,6 +5,7 @@ import Logo from "../logo/logo.jsx";
 import PageFooter from "../page-footer/page-footer.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
+import MovieCardBg from "../movie-card-bg/movie-card-bg.jsx";
 
 const START_SHOWING_COUNT = 8;
 const SHOWING_COUNT_BY_BUTTON = 20;
@@ -53,12 +54,13 @@ class MainPage extends PureComponent {
     // const filteredMovies = filterMoviesByGenre(movies, selectedGenre);
     const filteredMovies = movies;
 
+    const name = `The Grand Budapest Hotel`;
+    const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
+
     return (
       <React.Fragment>
         <section className="movie-card">
-          <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
-          </div>
+          <MovieCardBg src={backgroundImage} alt={name} />
 
           <h1 className="visually-hidden">WTW</h1>
 
