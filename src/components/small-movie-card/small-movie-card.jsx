@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 // import VideoPlayer from "../video-player/video-player.jsx";
 
 class SmallMovieCard extends PureComponent {
@@ -38,9 +39,9 @@ class SmallMovieCard extends PureComponent {
           /> */}
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">
+          <Link className="small-movie-card__link" to={`/films`}>
             {name}
-          </a>
+          </Link>
         </h3>
       </article>
     );
@@ -67,6 +68,10 @@ class SmallMovieCard extends PureComponent {
 SmallMovieCard.propTypes = {
   onHover: PropTypes.func,
   movie: PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string
+    ]).isRequired,
     name: PropTypes.string.isRequired,
     previewImage: PropTypes.string.isRequired,
     previewVideoLink: PropTypes.string,

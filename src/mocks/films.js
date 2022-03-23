@@ -1,4 +1,4 @@
-import {adaptMovieToClient} from "../utils/movies.jsx";
+import {adaptMovieToClient} from "../utils/movies.js";
 
 const movies = [
   {
