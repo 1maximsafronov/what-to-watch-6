@@ -1,44 +1,26 @@
-import React, {PureComponent} from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import GenreItem from "./genre-item/genre-item.jsx";
 
-const genres = [
-  `All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thrillers`,
-];
+const GenresList = (props) => {
+  const {genres, activeGenre, onGenreChange} = props;
+  return (
+    <ul className="catalog__genres-list">
+      {genres.map((genre, i) =>(
+        <GenreItem key={`${genre}-${i}`}
+          isActive={activeGenre === genre}
+          genre={genre}
+          onClick={() => onGenreChange(genre)}
+        />
+      ))}
+    </ul>
+  );
+};
 
-class GenresList extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedGenre: `All genres`
-    };
-  }
-
-  render() {
-    const {selectedGenre} = this.state;
-    return (
-      <ul className="catalog__genres-list">
-        {genres.map((genre, i) =>(
-          <GenreItem
-            key={`${genre}-${i}`}
-            genre={genre}
-            isActive={selectedGenre === genre}
-            onClick={() => this.setState({selectedGenre: genre})}
-          />
-        ))}
-      </ul>
-    );
-  }
-}
-
+GenresList.propTypes = {
+  genres: PropTypes.arrayOf(PropTypes.string),
+  activeGenre: PropTypes.string,
+  onGenreChange: PropTypes.func,
+};
 
 export default GenresList;

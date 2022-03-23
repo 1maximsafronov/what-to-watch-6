@@ -6,22 +6,52 @@ import PageFooter from "../page-footer/page-footer.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 
+const START_SHOWING_COUNT = 8;
+const SHOWING_COUNT_BY_BUTTON = 20;
+
+const filterMoviesByGenre = (movies, genre) => {
+  if (genre !== `All genres`) {
+    return movies.filter((movie) => genre === movie.genre);
+  }
+
+  return movies;
+};
+
+const genres = [
+  `All genres`,
+  `Comedies`,
+  `Crime`,
+  `Documentary`,
+  `Dramas`,
+  `Horror`,
+  `Kids & Family`,
+  `Romance`,
+  `Sci-Fi`,
+  `Thrillers`,
+];
+
 class MainPage extends PureComponent {
   constructor(props) {
     super(props);
     const moviesCount = props.movies.length;
 
     this.state = {
-      showingCardsCount: moviesCount > 8 ? 8 : moviesCount,
+      selectedGenre: `All genres`,
+      showingCardsCount: moviesCount > START_SHOWING_COUNT ? START_SHOWING_COUNT : moviesCount,
+      showingMovies: props.movies.slice(0, START_SHOWING_COUNT),
     };
 
     this._showMoreClickHandler = this._showMoreClickHandler.bind(this);
+    this._handleGenreChange = this._handleGenreChange.bind(this);
   }
 
   render() {
     const {movies} = this.props;
-    const {showingCardsCount} = this.state;
+    const {showingCardsCount, selectedGenre} = this.state;
     const isShowMoreBtn = movies.length > showingCardsCount;
+
+    // const filteredMovies = filterMoviesByGenre(movies, selectedGenre);
+    const filteredMovies = movies;
 
     return (
       <React.Fragment>
@@ -74,9 +104,13 @@ class MainPage extends PureComponent {
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-            <GenresList />
+            <GenresList
+              genres={genres}
+              activeGenre={this.state.selectedGenre}
+              onGenreChange={this._handleGenreChange}
+            />
 
-            <MoviesList movies={movies.slice(0, this.state.showingCardsCount)}/>
+            <MoviesList movies={filteredMovies.slice(0, this.state.showingCardsCount)}/>
 
             {isShowMoreBtn && (
               <div className="catalog__more">
@@ -94,10 +128,17 @@ class MainPage extends PureComponent {
     );
   }
 
+  _handleGenreChange(newGenre) {
+    this.setState({selectedGenre: newGenre});
+  }
+
   _showMoreClickHandler() {
+    const {movies} = this.props;
+    const moviesCount = movies.length;
+    // const showingMovies = this.state.showingMovies.length;
+
     const {showingCardsCount} = this.state;
-    const moviesCount = this.props.movies.length;
-    const nextShowingCount = showingCardsCount + 20;
+    const nextShowingCount = showingCardsCount + SHOWING_COUNT_BY_BUTTON;
 
     if (showingCardsCount < moviesCount) {
       this.setState({
