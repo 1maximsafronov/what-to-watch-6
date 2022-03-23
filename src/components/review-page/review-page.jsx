@@ -3,9 +3,9 @@ import React from "react";
 import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import MovieCardBg from "../movie-card-bg/movie-card-bg.jsx";
+import BreadCrumbs from "../breadcrumbs/breadcrumbs.jsx";
 
 const ReviewPage = () => {
-
   const name = `The Grand Budapest Hotel`;
   const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
 
@@ -19,16 +19,7 @@ const ReviewPage = () => {
         <header className="page-header">
           <Logo href="main.html"/>
 
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
+          <BreadCrumbs />
 
           <UserBlock />
 
