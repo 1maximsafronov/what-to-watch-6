@@ -1,12 +1,22 @@
 import React from "react";
 import ReactDom from "react-dom";
-import {reducer} from "./store/reducer";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+import {reducer} from "./store/reducer";
+import {createAPI} from "./service/api";
 
 import App from "./components/app/app.jsx";
 
-const store = createStore(reducer);
+import {fetchMovies} from "./store/api-actions";
+
+const api = createAPI(() => {});
+const store = createStore(
+    reducer,
+    applyMiddleware(thunk.withExtraArgument(api))
+);
+
+store.dispatch(fetchMovies());
 
 ReactDom.render(
     <Provider store={store}>
