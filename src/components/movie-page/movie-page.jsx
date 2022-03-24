@@ -1,32 +1,38 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment} from "react";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import {useParams} from "react-router-dom";
 
 import PageLogo from "../page-logo/page-logo";
 import UserBlock from "../user-block/user-block";
-import MovieNav from "../movie-nav/movie-nav";
 import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
 
-import MovieOverView from "../movie-overview/movie-overview";
-import MovieDetails from "../movie-details/movie-details";
-import MovieReviews from "../movie-reviews/movie-reviews";
+import MovieDesc from "../movie-desc/movie-desc";
 
-import {MovieTab} from "../../const.js";
 
-const MoviePage = () => {
-  const [activeTab, setActiveTab] = useState(MovieTab.OVERVIEW);
+const MoviePage = (props) => {
+  const {movies} = props;
 
-  const bgImage = `img/bg-the-grand-budapest-hotel.jpg`;
-  const poster = `img/the-grand-budapest-hotel-poster.jpg`;
-  const name = `The Grand Budapest Hotel`;
-  const genre = `Drama`;
+  const {id} = useParams();
+
+  const currentMovie = movies.find((movie) => String(movie.id) === String(id));
+  const {poster, name, genre, backgroundImage, backgroundColor} = currentMovie;
+
+  // const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
+  // const poster = `img/the-grand-budapest-hotel-poster.jpg`;
+  // const name = `The Grand Budapest Hotel`;
+  // const genre = `Drama`;
   const year = `2014`;
 
   return (
     <Fragment>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full"
+        style={{backgroundColor}}
+      >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={bgImage} alt={name} />
+            <img src={backgroundImage} alt={name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -69,17 +75,7 @@ const MoviePage = () => {
               <img src={poster} alt={`${name} poster`} width="218" height="327" />
             </div>
 
-            <div className="movie-card__desc">
-              <MovieNav
-                items={Object.values(MovieTab)}
-                activeItem={activeTab}
-                onItemChange={(tab)=> setActiveTab(tab)}
-              />
-
-              {MovieTab.OVERVIEW === activeTab && <MovieOverView />}
-              {MovieTab.DETAILS === activeTab && <MovieDetails />}
-              {MovieTab.REVIEWS === activeTab && <MovieReviews />}
-            </div>
+            <MovieDesc />
           </div>
         </div>
       </section>
@@ -87,7 +83,7 @@ const MoviePage = () => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoviesList />
+          <MoviesList movies={movies} />
         </section>
         <PageFooter logoLink="main.html" />
       </div>
@@ -95,4 +91,13 @@ const MoviePage = () => {
   );
 };
 
-export default MoviePage;
+MoviePage.propTypes = {
+  movies: PropTypes.array
+};
+
+const mapSateToProps = (state) => ({
+  movies: state.movies
+});
+
+export {MoviePage};
+export default connect(mapSateToProps)(MoviePage);

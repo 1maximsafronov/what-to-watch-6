@@ -1,11 +1,16 @@
 import React from "react";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+
 import PageFooter from "../page-footer/page-footer";
 
 import PageLogo from "../page-logo/page-logo";
 import MoviesList from "../movies-list/movies-list";
 import UserBlock from "../user-block/user-block";
 
-const MyListPage = () => {
+const MyListPage = (props) => {
+  const {movies} = props;
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -16,7 +21,7 @@ const MyListPage = () => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesList />
+        <MoviesList movies={movies}/>
       </section>
 
       <PageFooter logoLink="main.html"/>
@@ -24,4 +29,14 @@ const MyListPage = () => {
   );
 };
 
-export default MyListPage;
+
+MyListPage.propTypes = {
+  movies: PropTypes.array
+};
+
+const mapSateToProps = (state) => ({
+  movies: state.movies
+});
+
+export {MyListPage};
+export default connect(mapSateToProps)(MyListPage);
