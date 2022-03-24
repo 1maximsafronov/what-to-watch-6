@@ -2,30 +2,24 @@ import React from "react";
 // import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
+import MovieCardBg from "../movie-card-bg/movie-card-bg.jsx";
+import BreadCrumbs from "../breadcrumbs/breadcrumbs.jsx";
 
 const ReviewPage = () => {
+  const name = `The Grand Budapest Hotel`;
+  const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
+
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
-        <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
-        </div>
+        <MovieCardBg src={backgroundImage} alt={name} />
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
           <Logo href="main.html"/>
 
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
+          <BreadCrumbs />
 
           <UserBlock />
 

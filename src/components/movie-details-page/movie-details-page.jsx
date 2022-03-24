@@ -1,13 +1,14 @@
 import React, {Fragment, PureComponent} from "react";
 
 import Overview from "../overview/overview.jsx";
-// import Details from "../details/details.jsx";
-// import Reviews from "../reviews/reviews.jsx";
+import Details from "../details/details.jsx";
+import Reviews from "../reviews/reviews.jsx";
 import Logo from "../logo/logo.jsx";
 import PageFooter from "../page-footer/page-footer.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import MovieNav from "../movie-nav/movie-nav.jsx";
+import MovieCardBg from "../movie-card-bg/movie-card-bg.jsx";
 
 import movies from "../../mocks/films.js";
 
@@ -20,28 +21,30 @@ class MovieDetailsPage extends PureComponent {
   }
 
   render() {
+    const name = `The Grand Budapest Hotel`;
+    const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
+    const poster = `img/the-grand-budapest-hotel-poster.jpg`;
+    const genre = `Drama`;
+    const year = `2014`;
+
     return (
       <Fragment>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
-            <div className="movie-card__bg">
-              <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
-            </div>
+            <MovieCardBg src={backgroundImage} alt={name} />
 
             <h1 className="visually-hidden">WTW</h1>
-
             <header className="page-header movie-card__head">
               <Logo href="main.html"/>
-
               <UserBlock />
             </header>
 
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
-                <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+                <h2 className="movie-card__title">{name}</h2>
                 <p className="movie-card__meta">
-                  <span className="movie-card__genre">Drama</span>
-                  <span className="movie-card__year">2014</span>
+                  <span className="movie-card__genre">{genre}</span>
+                  <span className="movie-card__year">{year}</span>
                 </p>
 
                 <div className="movie-card__buttons">
@@ -66,14 +69,15 @@ class MovieDetailsPage extends PureComponent {
           <div className="movie-card__wrap movie-card__translate-top">
             <div className="movie-card__info">
               <div className="movie-card__poster movie-card__poster--big">
-                <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
-                  height="327" />
+                <img src={poster} alt={name} width="218" height="327" />
               </div>
 
               <div className="movie-card__desc">
                 <MovieNav />
 
                 <Overview />
+                {/* <Details /> */}
+                {/* <Reviews /> */}
               </div>
             </div>
           </div>
@@ -84,9 +88,7 @@ class MovieDetailsPage extends PureComponent {
             <h2 className="catalog__title">More like this</h2>
             <MoviesList movies={movies}/>
           </section>
-
           <PageFooter logoLink="main.html" />
-
         </div>
       </Fragment>
     );

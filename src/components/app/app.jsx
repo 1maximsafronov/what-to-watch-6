@@ -1,8 +1,9 @@
+import {Routes, Route, BrowserRouter} from "react-router-dom";
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import MainPage from "../main-page/main-page.jsx";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
+import MainPage from "../main-page/main-page.jsx";
 import LoginPage from "../login-page/login-page.jsx";
 import MovieDetailsPage from "../movie-details-page/movie-details-page.jsx";
 import ReviewPage from "../review-page/review-page.jsx";
@@ -54,4 +55,8 @@ App.propTypes = {
   movies: PropTypes.array.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  movies: state.movies
+});
+
+export default connect(mapStateToProps, null)(App);

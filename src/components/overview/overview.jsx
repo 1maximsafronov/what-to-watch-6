@@ -1,14 +1,32 @@
 import React, {Fragment} from "react";
 
 const Overview = () => {
+
+  const rating = `8,9`;
+  const ratingLevel = `Very good`;
+  const ratingCount = `240 ratings`;
+
+  const director = `Wes Andreson`;
+
+  let starring = [
+    `Bill Murray`,
+    `Edward Norton`,
+    `Jude Law`,
+    `Willem Dafoe`,
+    `Saoirse Ronan`,
+    `Tony Revoloru`,
+    `Tilda Swinton`,
+    `Tom Wilkinson`,
+    `Owen Wilkinson`,
+  ];
+
   return (
     <Fragment>
-
       <div className="movie-rating">
-        <div className="movie-rating__score">8,9</div>
+        <div className="movie-rating__score">{rating}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">Very good</span>
-          <span className="movie-rating__count">240 ratings</span>
+          <span className="movie-rating__level">{ratingLevel}</span>
+          <span className="movie-rating__count">{ratingCount}</span>
         </p>
       </div>
 
@@ -20,10 +38,13 @@ const Overview = () => {
               sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously,
               Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
 
-        <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
+        <p className="movie-card__director">
+          <strong>Director: {director}</strong>
+        </p>
 
-        <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and
-                other</strong></p>
+        <p className="movie-card__starring">
+          <strong>Starring: {starring.slice(0, 4).join(`, `)} and other</strong>
+        </p>
       </div>
     </Fragment>
   );
