@@ -1,14 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import PageLogo from "../page-logo/page-logo";
 import UserBlock from "../user-block/user-block";
 
 const AddReviewPage = () => {
+
+  const bgImage = `img/bg-the-grand-budapest-hotel.jpg`;
+  const poster = `img/the-grand-budapest-hotel-poster.jpg`;
+  const name = `The Grand Budapest Hotel`;
+
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={bgImage} alt={name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -19,7 +24,7 @@ const AddReviewPage = () => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="movie-page.html" className="breadcrumbs__link">{name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -31,7 +36,7 @@ const AddReviewPage = () => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={poster} alt={`${name} poster`} width="218" height="327" />
         </div>
       </div>
 

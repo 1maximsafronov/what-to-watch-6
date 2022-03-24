@@ -6,12 +6,19 @@ import MoviesList from "../movies-list/movies-list";
 import UserBlock from "../user-block/user-block";
 
 const MoviePage = () => {
+
+  const bgImage = `img/bg-the-grand-budapest-hotel.jpg`;
+  const poster = `img/the-grand-budapest-hotel-poster.jpg`;
+  const name = `The Grand Budapest Hotel`;
+  const genre = `Drama`;
+  const year = `2014`;
+
   return (
     <Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={bgImage} alt={name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -23,10 +30,10 @@ const MoviePage = () => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -51,7 +58,7 @@ const MoviePage = () => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={poster} alt={`${name} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -94,10 +101,8 @@ const MoviePage = () => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
           <MoviesList />
         </section>
-
         <PageFooter logoLink="main.html" />
       </div>
     </Fragment>
