@@ -10,19 +10,14 @@ import UserBlock from "../user-block/user-block";
 
 const MainPage = (props) => {
   const {movies} = props;
-  const [firlsMovie] = movies;
-  const {backgroundImage: bgImage, poster, genre, name, released: year} = firlsMovie;
-  // const bgImage = `img/bg-the-grand-budapest-hotel.jpg`;
-  // const poster = `img/the-grand-budapest-hotel-poster.jpg`;
-  // const name = `The Grand Budapest Hotel`;
-  // const genre = `Drama`;
-  // const year = `2014`;
+  const [promoMovie] = movies;
+  const {backgroundImage, poster, genre, name, released} = promoMovie;
 
   return (
     <Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={bgImage} alt={name} />
+          <img src={backgroundImage} alt={name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -42,7 +37,7 @@ const MainPage = (props) => {
               <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">

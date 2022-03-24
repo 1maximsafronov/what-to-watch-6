@@ -17,13 +17,7 @@ const MoviePage = (props) => {
   const {id} = useParams();
 
   const currentMovie = movies.find((movie) => String(movie.id) === String(id));
-  const {poster, name, genre, backgroundImage, backgroundColor} = currentMovie;
-
-  // const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
-  // const poster = `img/the-grand-budapest-hotel-poster.jpg`;
-  // const name = `The Grand Budapest Hotel`;
-  // const genre = `Drama`;
-  const year = `2014`;
+  const {poster, name, genre, backgroundImage, backgroundColor, released} = currentMovie;
 
   return (
     <Fragment>
@@ -47,7 +41,7 @@ const MoviePage = (props) => {
               <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{year}</span>
+                <span className="movie-card__year">{released}</span>
               </p>
 
               <div className="movie-card__buttons">
