@@ -1,62 +1,39 @@
-import {Routes, Route, BrowserRouter} from "react-router-dom";
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {getMovies} from "../../reducer/data/selector.js";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 
-import MainPage from "../main-page/main-page.jsx";
-import LoginPage from "../login-page/login-page.jsx";
-import MovieDetailsPage from "../movie-details-page/movie-details-page.jsx";
-import ReviewPage from "../review-page/review-page.jsx";
-import Player from "../player/player.jsx";
-import MyList from "../my-list/my-list.jsx";
+import MainPage from "../main-page/main-page";
+import LoginPage from "../login-page/login-page";
+import MyListPage from "../my-list-page/my-list-page";
+import MoviePage from "../movie-page/movie-page";
+import AddReviewPage from "../add-review-page/add-review-page";
+import MoviePlayerPage from "../movie-player-page/movie-player-page";
 
-const AppRoutes = {
-  MAIN: `/`,
-  LOGIN: `/login`,
-  MY_LIST: `/mylist`,
-  FILM: `/films`,
-  REVIEW: `/review`,
-  PLAYER: `/player`
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <MainPage />
+        </Route>
+        <Route exact path="/login">
+          <LoginPage />
+        </Route>
+        <Route exact path="/mylist">
+          <MyListPage />
+        </Route>
+        <Route exact path="/films">
+          <MoviePage />
+        </Route>
+        <Route exact path="/films/review">
+          <AddReviewPage />
+        </Route>
+        <Route exact path="/player">
+          <MoviePlayerPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
 };
 
-class App extends PureComponent {
-  render() {
-    const {movies} = this.props;
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route exact path={AppRoutes.MAIN} element={
-            <MainPage movies={movies}/>
-          }/>
-          <Route exact path={AppRoutes.LOGIN} element={
-            <LoginPage />
-          }/>
-          <Route exact path={AppRoutes.MY_LIST} element={
-            <MyList />
-          }/>
-          <Route exact path={AppRoutes.FILM} element={
-            <MovieDetailsPage />
-          }/>
-          <Route exact path={AppRoutes.REVIEW} element={
-            <ReviewPage />
-          }/>
-          <Route exact path={AppRoutes.PLAYER} element={
-            <Player />
-          }/>
-        </Routes>
-      </BrowserRouter>
-    );
-  }
-}
-
-
-App.propTypes = {
-  movies: PropTypes.array.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  movies: getMovies(state)
-});
-
-export default connect(mapStateToProps, null)(App);
+export default App;

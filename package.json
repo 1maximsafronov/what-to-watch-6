@@ -7,42 +7,38 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
     "eslint": "eslint --ext .jsx --ext .js src/",
-    "test": "npm run eslint && npm run test.jest",
-    "test.jest": "jest"
+    "test": "npm run eslint"
   },
   "devDependencies": {
-    "@babel/core": "7.17.8",
-    "@babel/preset-env": "7.16.11",
-    "@babel/preset-react": "7.16.7",
-    "axios-mock-adapter": "1.17.0",
-    "babel-jest": "27.5.1",
-    "babel-loader": "8.0.6",
-    "enzyme": "3.11.0",
-    "enzyme-adapter-react-16": "1.15.6",
-    "eslint": "5.13.0",
-    "eslint-config-htmlacademy": "0.5.2",
-    "eslint-plugin-react": "7.18.0",
-    "jest": "27.5.1",
-    "react-test-renderer": "17.0.2",
-    "redux-devtools-extension": "2.13.9",
-    "webpack": "4.41.5",
-    "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.10.1"
+    "@babel/core": "7.12.17",
+    "@babel/preset-env": "7.12.17",
+    "@babel/preset-react": "7.12.13",
+    "@testing-library/react": "11.2.7",
+    "axios-mock-adapter": "1.19.0",
+    "babel-loader": "8.2.4",
+    "eslint": "7.18.0",
+    "eslint-config-htmlacademy": "2.1.0",
+    "eslint-plugin-react": "7.22.0",
+    "jest": "26.6.3",
+    "redux-mock-store": "1.5.4",
+    "webpack": "4.46.0",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.3"
   },
   "engines": {
-    "node": "10"
+    "node": ">=12.0.0"
   },
   "dependencies": {
-    "axios": "0.26.1",
-    "classnames": "2.3.1",
-    "nanoid": "3.3.1",
-    "prop-types": "15.8.1",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-redux": "7.2.0",
-    "react-router-dom": "6.2.2",
-    "redux": "4.0.5",
+    "axios": "0.21.4",
+    "history": "4.10.1",
+    "prop-types": "15.7.2",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "react-redux": "7.2.6",
+    "react-router-dom": "5.2.1",
+    "redux": "4.1.2",
+    "redux-devtools-extension": "2.13.9",
     "redux-thunk": "2.3.0",
-    "reselect": "4.0.0"
+    "reselect": "4.1.5"
   }
 }
