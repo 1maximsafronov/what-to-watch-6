@@ -2,6 +2,7 @@ const ActionType = {
   LOAD_MOVIES: `data/loadMovies`,
   LOAD_ONE_MOVIE: `data/loadOneMovie`,
   CHANGE_FILTER: `data/changeFilter`,
+  LOAD_PROMO_MOVIE: `data/loadPromoMovie`,
 };
 
 
@@ -22,6 +23,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_ONE_MOVIE,
       payload: movie
+    };
+  },
+  loadPromoMovie(promoMove) {
+    return {
+      type: ActionType.LOAD_PROMO_MOVIE,
+      payload: promoMove
     };
   }
 };

@@ -15,6 +15,13 @@ export const fetchOneMovie = (id) => (dispatch, _getState, api) => {
       dispatch(ActionCreator.loadOneMovie(movie));
     });
 };
+export const fetchPromoMovie = () =>(dispatch, _getState, api) => {
+  return api.get(`/promo`)
+    .then((response) => {
+      const promoMovie = adaptMovieToClient(response.data);
+      dispatch(ActionCreator.loadPromoMovie(promoMovie));
+    });
+};
 
 /*
 

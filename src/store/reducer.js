@@ -3,6 +3,7 @@ import movies from "../mocks/films";
 
 const initialState = {
   movies,
+  promoMovie: null,
   currentGenreFilter: ``,
 };
 
@@ -21,10 +22,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentGenreFilter: action.payload
       };
+    case ActionType.LOAD_PROMO_MOVIE:
+      return {
+        ...state,
+        promoMovie: action.payload
+      };
   }
 
   return state;
 };
-
 
 export {reducer};
