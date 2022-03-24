@@ -14,6 +14,7 @@
     "@babel/core": "7.17.8",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
+    "axios-mock-adapter": "1.17.0",
     "babel-jest": "27.5.1",
     "babel-loader": "8.0.6",
     "enzyme": "3.11.0",
@@ -23,6 +24,7 @@
     "eslint-plugin-react": "7.18.0",
     "jest": "27.5.1",
     "react-test-renderer": "17.0.2",
+    "redux-devtools-extension": "2.13.9",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.10.1"
@@ -31,6 +33,7 @@
     "node": "10"
   },
   "dependencies": {
+    "axios": "0.26.1",
     "classnames": "2.3.1",
     "nanoid": "3.3.1",
     "prop-types": "15.8.1",
@@ -38,6 +41,8 @@
     "react-dom": "16.12.0",
     "react-redux": "7.2.0",
     "react-router-dom": "6.2.2",
-    "redux": "4.0.5"
+    "redux": "4.0.5",
+    "redux-thunk": "2.3.0",
+    "reselect": "4.0.0"
   }
 }
