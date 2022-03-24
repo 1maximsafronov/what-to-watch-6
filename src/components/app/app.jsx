@@ -2,6 +2,7 @@ import {Routes, Route, BrowserRouter} from "react-router-dom";
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {getMovies} from "../../reducer/data/selector.js";
 
 import MainPage from "../main-page/main-page.jsx";
 import LoginPage from "../login-page/login-page.jsx";
@@ -22,7 +23,6 @@ const AppRoutes = {
 class App extends PureComponent {
   render() {
     const {movies} = this.props;
-
     return (
       <BrowserRouter>
         <Routes>
@@ -56,7 +56,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies
+  movies: getMovies(state)
 });
 
 export default connect(mapStateToProps, null)(App);

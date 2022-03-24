@@ -1,4 +1,6 @@
 import React, {Fragment, PureComponent} from "react";
+import {connect} from "react-redux";
+import {getMovies} from "../../reducer/data/selector.js";
 
 import Overview from "../overview/overview.jsx";
 import Details from "../details/details.jsx";
@@ -95,5 +97,8 @@ class MovieDetailsPage extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  movies: getMovies(state)
+});
 
-export default MovieDetailsPage;
+export default connect(mapStateToProps, null)(MovieDetailsPage);

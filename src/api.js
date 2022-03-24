@@ -7,7 +7,7 @@ const Error = {
 
 export const createAPI = (onUnauthorized) => {
   const api = Axios.create({
-    baseURL: `https://9.react.pages.academy/guess-melody`,
+    baseURL: `https://7.react.pages.academy/wtw`,
     timeout: 1000 * 5,
     withCredentials: true,
   });
@@ -23,7 +23,6 @@ export const createAPI = (onUnauthorized) => {
       // Запрос авторизации - это особый случай и важно дать понять приложению, что запрос был неудачным.
       throw err;
     }
-
 
     throw err;
   };

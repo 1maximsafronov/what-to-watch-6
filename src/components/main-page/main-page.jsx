@@ -34,11 +34,10 @@ const genres = [
 class MainPage extends PureComponent {
   constructor(props) {
     super(props);
-    const moviesCount = props.movies.length;
 
     this.state = {
       selectedGenre: `All genres`,
-      showingCardsCount: moviesCount > START_SHOWING_COUNT ? START_SHOWING_COUNT : moviesCount,
+      showingCardsCount: 8,
       showingMovies: props.movies.slice(0, START_SHOWING_COUNT),
     };
 
@@ -52,7 +51,6 @@ class MainPage extends PureComponent {
     const isShowMoreBtn = movies.length > showingCardsCount;
 
     // const filteredMovies = filterMoviesByGenre(movies, selectedGenre);
-    const filteredMovies = movies;
 
     const name = `The Grand Budapest Hotel`;
     const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
@@ -112,7 +110,7 @@ class MainPage extends PureComponent {
               onGenreChange={this._handleGenreChange}
             />
 
-            <MoviesList movies={filteredMovies.slice(0, this.state.showingCardsCount)}/>
+            <MoviesList movies={movies.slice(0, this.state.showingCardsCount)}/>
 
             {isShowMoreBtn && (
               <div className="catalog__more">
