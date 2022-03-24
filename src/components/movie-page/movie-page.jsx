@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import PageFooter from "../page-footer/page-footer";
 
 const MoviePage = () => {
   return (
@@ -141,19 +141,7 @@ const MoviePage = () => {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <PageFooter logoLink="main.html" />
       </div>
     </Fragment>
   );
