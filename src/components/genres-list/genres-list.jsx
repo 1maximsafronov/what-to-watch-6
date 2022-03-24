@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import GenreListItem from "../genres-list-item/genres-list-item";
+import Item from "../genres-list-item/genres-list-item";
 
 const genresList = [
   `All genres`,
@@ -20,7 +20,7 @@ const GenresList = () => {
   return (
     <ul className="catalog__genres-list">
       {genresList.map((genre, index) => (
-        <GenreListItem key={`genre-${index}`}
+        <Item key={`genre-${index}`}
           genre={genre}
           isActive={genre === currentGenre}
           onClick={() => setGenre(genre)}

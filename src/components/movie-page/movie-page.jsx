@@ -1,16 +1,19 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 
-import PageFooter from "../page-footer/page-footer";
 import PageLogo from "../page-logo/page-logo";
-import MoviesList from "../movies-list/movies-list";
 import UserBlock from "../user-block/user-block";
 import MovieNav from "../movie-nav/movie-nav";
+import MoviesList from "../movies-list/movies-list";
+import PageFooter from "../page-footer/page-footer";
 
 import MovieOverView from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
 
+import {MovieTab} from "../../const.js";
+
 const MoviePage = () => {
+  const [activeTab, setActiveTab] = useState(MovieTab.OVERVIEW);
 
   const bgImage = `img/bg-the-grand-budapest-hotel.jpg`;
   const poster = `img/the-grand-budapest-hotel-poster.jpg`;
@@ -67,12 +70,15 @@ const MoviePage = () => {
             </div>
 
             <div className="movie-card__desc">
-              <MovieNav />
+              <MovieNav
+                items={Object.values(MovieTab)}
+                activeItem={activeTab}
+                onItemChange={(tab)=> setActiveTab(tab)}
+              />
 
-              <MovieOverView />
-
-              {/* <MovieDetails /> */}
-              {/* <MovieReviews /> */}
+              {MovieTab.OVERVIEW === activeTab && <MovieOverView />}
+              {MovieTab.DETAILS === activeTab && <MovieDetails />}
+              {MovieTab.REVIEWS === activeTab && <MovieReviews />}
             </div>
           </div>
         </div>
