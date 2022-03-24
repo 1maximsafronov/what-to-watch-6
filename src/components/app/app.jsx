@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 import MainPage from "../main-page/main-page";
@@ -22,7 +21,7 @@ const App = () => {
         <Route exact path="/mylist">
           <MyListPage />
         </Route>
-        <Route exact path="/films">
+        <Route exact path="/films/:id">
           <MoviePage />
         </Route>
         <Route exact path="/films/review">

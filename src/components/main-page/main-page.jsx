@@ -1,4 +1,6 @@
 import React, {Fragment} from "react";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 import PageFooter from "../page-footer/page-footer";
 import PageLogo from "../page-logo/page-logo";
@@ -6,13 +8,15 @@ import GenresList from "../genres-list/genres-list";
 import MoviesList from "../movies-list/movies-list";
 import UserBlock from "../user-block/user-block";
 
-const MainPage = () => {
-
-  const bgImage = `img/bg-the-grand-budapest-hotel.jpg`;
-  const poster = `img/the-grand-budapest-hotel-poster.jpg`;
-  const name = `The Grand Budapest Hotel`;
-  const genre = `Drama`;
-  const year = `2014`;
+const MainPage = (props) => {
+  const {movies} = props;
+  const [firlsMovie] = movies;
+  const {backgroundImage: bgImage, poster, genre, name, released: year} = firlsMovie;
+  // const bgImage = `img/bg-the-grand-budapest-hotel.jpg`;
+  // const poster = `img/the-grand-budapest-hotel-poster.jpg`;
+  // const name = `The Grand Budapest Hotel`;
+  // const genre = `Drama`;
+  // const year = `2014`;
 
   return (
     <Fragment>
@@ -76,5 +80,13 @@ const MainPage = () => {
   );
 };
 
+MainPage.propTypes = {
+  movies: PropTypes.array
+};
 
-export default MainPage;
+const mapSateToProps = (state) => ({
+  movies: state.movies
+});
+
+export {MainPage};
+export default connect(mapSateToProps)(MainPage);
