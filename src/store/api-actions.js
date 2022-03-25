@@ -22,6 +22,13 @@ export const fetchPromoMovie = () =>(dispatch, _getState, api) => {
       dispatch(ActionCreator.loadPromoMovie(promoMovie));
     });
 };
+export const fetchSimilarMovies = (id) => (dispatch, _getState, api) => {
+  return api.get(`/films/${id}/similar`)
+    .then((response) => {
+      const movies = response.data.map(adaptMovieToClient);
+      dispatch(ActionCreator.loadSimilarMovies(movies));
+    });
+};
 
 /*
 

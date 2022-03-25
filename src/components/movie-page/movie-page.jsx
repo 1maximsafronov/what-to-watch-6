@@ -11,13 +11,25 @@ import MovieCardBg from "../movie-card-bg/movie-card-bg";
 import Poster from "../movie-card-poster/movie-card-poster";
 import PageHeader from "../page-header/page-header";
 
+import {fetchOneMovie, fetchSimilarMovies} from "../../store/api-actions";
+
 const MoviePage = (props) => {
-  const {movies} = props;
+  const {
+    movie,
+    onDataLoad,
+    similarMovies,
+    isMovieLoaded,
+    isSimilarMoviesLoaded,
+  } = props;
 
   const {id} = useParams();
 
-  const currentMovie = movies.find((movie) => String(movie.id) === String(id));
-  const {poster, name, genre, backgroundImage, backgroundColor, released} = currentMovie;
+  if (!isMovieLoaded && !isSimilarMoviesLoaded) {
+    onDataLoad(id);
+    return <p>Loading...</p>;
+  }
+
+  const {poster, name, genre, backgroundImage, backgroundColor, released} = movie;
 
   return (
     <Fragment>
@@ -61,7 +73,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <Poster src={poster} alt={name} big/>
-            <MovieDesc movie={currentMovie} />
+            <MovieDesc movie={movie} />
           </div>
         </div>
       </section>
@@ -69,7 +81,10 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoviesList movies={movies} />
+          {isSimilarMoviesLoaded ?
+            <MoviesList movies={similarMovies} /> :
+            <p>Loading...</p>
+          }
         </section>
         <PageFooter/>
       </div>
@@ -78,12 +93,26 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  movies: PropTypes.array
+  movie: PropTypes.object,
+  similarMovies: PropTypes.array,
+  isMovieLoaded: PropTypes.bool,
+  isSimilarMoviesLoaded: PropTypes.bool,
+  onDataLoad: PropTypes.func.isRequired,
 };
 
 const mapSateToProps = (state) => ({
-  movies: state.movies
+  movie: state.movieById,
+  similarMovies: state.similarMovies,
+  isMovieLoaded: state.isMovieByIdLoaded,
+  isSimilarMoviesLoaded: state.isSimilarMoviesLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onDataLoad(id) {
+    dispatch(fetchOneMovie(id));
+    dispatch(fetchSimilarMovies(id));
+  }
 });
 
 export {MoviePage};
-export default connect(mapSateToProps)(MoviePage);
+export default connect(mapSateToProps, mapDispatchToProps)(MoviePage);
