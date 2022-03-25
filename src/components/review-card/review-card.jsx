@@ -1,10 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const ReviewCard = () => {
-  const author = `Kate Muir`;
-  const text = `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.`;
-  const rating = 8.9;
-
+const ReviewCard = ({comment}) => {
+  const {author, text, rating} = comment;
+  // TODO: ДОбавить вывод даты коментария
   return (
     <div className="review">
       <blockquote className="review__quote">
@@ -18,6 +17,10 @@ const ReviewCard = () => {
       <div className="review__rating">{rating}</div>
     </div>
   );
+};
+
+ReviewCard.propTypes = {
+  comment: PropTypes.object
 };
 
 

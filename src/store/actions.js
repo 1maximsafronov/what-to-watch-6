@@ -8,7 +8,9 @@ const ActionType = {
   LOAD_SIMILAR_MOVIES: `data/loadSimilarMovies`,
   RESET_SIMILAR_MOVIES: `data/resetSimilarMovies`,
   RESET_MOVIE_BY_ID: `data/resetMovieById`,
-  SET_GENRES_LIST: `data/setGenresList`
+  SET_GENRES_LIST: `data/setGenresList`,
+  LOAD_COMMENTS: `data/loadComments`,
+  REST_MOVIE_COMMENTS: `data/resetMovieComments`
 };
 
 
@@ -62,6 +64,18 @@ const ActionCreator = {
     return {
       type: ActionType.RESET_MOVIE_BY_ID,
       payload: null,
+    };
+  },
+  loadComments(comments) {
+    return {
+      type: ActionType.LOAD_COMMENTS,
+      payload: comments,
+    };
+  },
+  resetMovieComments() {
+    return {
+      type: ActionType.REST_MOVIE_COMMENTS,
+      payload: null
     };
   }
 };

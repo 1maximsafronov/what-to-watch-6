@@ -12,7 +12,7 @@ import Poster from "../movie-card-poster/movie-card-poster";
 import PageHeader from "../page-header/page-header";
 import Buttons from "../movie-card-buttons/movie-card-buttons";
 
-import {fetchOneMovie, fetchSimilarMovies} from "../../store/api-actions";
+import {fetchOneMovie, fetchSimilarMovies, fetchMovieComments} from "../../store/api-actions";
 import {ActionCreator} from "../../store/actions";
 
 const MoviePage = (props) => {
@@ -21,7 +21,9 @@ const MoviePage = (props) => {
     onDataLoad,
     onDataReset,
     similarMovies,
+    movieComments,
     isMovieLoaded,
+    isCommentsLoaded,
     isSimilarMoviesLoaded,
   } = props;
 
@@ -36,7 +38,7 @@ const MoviePage = (props) => {
   }, [id]);
 
 
-  if (!isMovieLoaded || !isSimilarMoviesLoaded) {
+  if (!isMovieLoaded || !isSimilarMoviesLoaded || !isCommentsLoaded) {
     return <p>Loading...</p>;
   }
 
@@ -72,7 +74,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <Poster src={poster} alt={name} size="big"/>
-            <MovieDesc movie={movie} />
+            <MovieDesc movie={movie} comments={movieComments} />
           </div>
         </div>
       </section>
@@ -91,9 +93,11 @@ const MoviePage = (props) => {
 
 MoviePage.propTypes = {
   movie: PropTypes.object,
-  similarMovies: PropTypes.array,
   isMovieLoaded: PropTypes.bool,
+  similarMovies: PropTypes.array,
   isSimilarMoviesLoaded: PropTypes.bool,
+  movieComments: PropTypes.array,
+  isCommentsLoaded: PropTypes.bool,
   onDataLoad: PropTypes.func.isRequired,
   onDataReset: PropTypes.func.isRequired
 };
@@ -103,16 +107,20 @@ const mapSateToProps = (state) => ({
   similarMovies: state.similarMovies,
   isMovieLoaded: state.isMovieByIdLoaded,
   isSimilarMoviesLoaded: state.isSimilarMoviesLoaded,
+  movieComments: state.currentMovieComments,
+  isCommentsLoaded: state.isCommentsLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onDataLoad(id) {
     dispatch(fetchOneMovie(id));
     dispatch(fetchSimilarMovies(id));
+    dispatch(fetchMovieComments(id));
   },
   onDataReset() {
     dispatch(ActionCreator.resetMovieById());
     dispatch(ActionCreator.resetSimilarMovies());
+    dispatch(ActionCreator.resetMovieComments());
   }
 });
 

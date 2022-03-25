@@ -1,5 +1,6 @@
 import {ActionCreator} from "./actions";
 import {adaptMovieToClient} from "../utils/movies";
+import {adaptCommentToClient} from "../utils/comments";
 
 export const fetchMovies = () => (dispatch, _getState, api) => {
   return api.get(`/films`)
@@ -28,6 +29,13 @@ export const fetchSimilarMovies = (id) => (dispatch, _getState, api) => {
     .then((response) => {
       const movies = response.data.map(adaptMovieToClient);
       dispatch(ActionCreator.loadSimilarMovies(movies));
+    });
+};
+export const fetchMovieComments = (id) => (dispatch, _getState, api) => {
+  return api.get(`/comments/${id}`)
+    .then((response) => {
+      const comments = response.data.map(adaptCommentToClient);
+      dispatch(ActionCreator.loadComments(comments));
     });
 };
 

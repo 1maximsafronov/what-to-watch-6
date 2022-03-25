@@ -12,6 +12,8 @@ const initialState = {
   isSimilarMoviesLoaded: false,
   genresList: [],
   currentGenreFilter: allGenresItem,
+  currentMovieComments: [],
+  isCommentsLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -61,6 +63,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         genresList: action.payload,
+      };
+    case ActionType.LOAD_COMMENTS:
+      return {
+        ...state,
+        currentMovieComments: action.payload,
+        isCommentsLoaded: true,
+      };
+    case ActionType.REST_MOVIE_COMMENTS:
+      return {
+        ...state,
+        currentMovieComments: [],
+        isCommentsLoaded: false,
       };
   }
 

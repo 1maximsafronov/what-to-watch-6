@@ -9,7 +9,7 @@ import {MovieTab} from "../../const.js";
 
 const MovieDesc = (props) => {
   const [activeTab, setActiveTab] = useState(MovieTab.OVERVIEW);
-  const {movie} = props;
+  const {movie, comments} = props;
 
   return (
     <div className="movie-card__desc">
@@ -21,13 +21,14 @@ const MovieDesc = (props) => {
 
       {MovieTab.OVERVIEW === activeTab && <MovieOverView movie={movie}/>}
       {MovieTab.DETAILS === activeTab && <MovieDetails movie={movie} />}
-      {MovieTab.REVIEWS === activeTab && <MovieReviews movie={movie} />}
+      {MovieTab.REVIEWS === activeTab && <MovieReviews movie={movie} comments={comments} />}
     </div>
   );
 };
 
 MovieDesc.propTypes = {
-  movie: PropTypes.object
+  movie: PropTypes.object,
+  comments: PropTypes.array,
 };
 
 
