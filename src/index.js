@@ -8,7 +8,7 @@ import {createAPI} from "./service/api";
 
 import App from "./components/app/app.jsx";
 
-import {fetchMovies} from "./store/api-actions";
+import {fetchMovies, fetchPromoMovie} from "./store/api-actions";
 
 const api = createAPI(() => {});
 const store = createStore(
@@ -17,6 +17,7 @@ const store = createStore(
 );
 
 store.dispatch(fetchMovies());
+store.dispatch(fetchPromoMovie());
 
 ReactDom.render(
     <Provider store={store}>

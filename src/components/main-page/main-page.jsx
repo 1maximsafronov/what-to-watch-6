@@ -9,8 +9,7 @@ import MoviesList from "../movies-list/movies-list";
 import UserBlock from "../user-block/user-block";
 
 const MainPage = (props) => {
-  const {movies} = props;
-  const [promoMovie] = movies;
+  const {movies, promoMovie, isMoviesLoaded} = props;
   const {backgroundImage, poster, genre, name, released} = promoMovie;
 
   return (
@@ -63,7 +62,8 @@ const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList />
-          <MoviesList movies={movies} />
+          {isMoviesLoaded ? <MoviesList movies={movies} /> : <p>Loading...</p>}
+
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
@@ -76,11 +76,15 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  movies: PropTypes.array
+  movies: PropTypes.array,
+  promoMovie: PropTypes.object,
+  isMoviesLoaded: PropTypes.bool,
 };
 
 const mapSateToProps = (state) => ({
-  movies: state.movies
+  movies: state.movies,
+  promoMovie: state.promoMovie,
+  isMoviesLoaded: state.isMoviesLoaded,
 });
 
 export {MainPage};

@@ -1,19 +1,20 @@
 import {ActionType} from "./actions";
-import movies from "../mocks/films";
 
 const initialState = {
-  movies,
-  promoMovie: null,
+  movies: [],
+  promoMovie: {},
   currentGenreFilter: ``,
+  isMoviesLoaded: false,
+  isPromoLoaded: false,
 };
-
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_MOVIES:
       return {
         ...state,
-        movies: action.payload
+        movies: action.payload,
+        isMoviesLoaded: true,
       };
     case ActionType.LOAD_ONE_MOVIE:
       return state;
@@ -25,7 +26,8 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return {
         ...state,
-        promoMovie: action.payload
+        promoMovie: action.payload,
+        isPromoLoaded: true,
       };
   }
 
