@@ -3,6 +3,8 @@ const ActionType = {
   LOAD_ONE_MOVIE: `data/loadOneMovie`,
   CHANGE_FILTER: `data/changeFilter`,
   LOAD_PROMO_MOVIE: `data/loadPromoMovie`,
+  LOAD_SIMILAR_MOVIES: `data/loadSimilarMovies`,
+  RESET_SIMILAR_MOVIES: `data/resetSimilarMovies`
 };
 
 
@@ -29,6 +31,18 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_PROMO_MOVIE,
       payload: promoMove
+    };
+  },
+  loadSimilarMovies(similarMovies) {
+    return {
+      type: ActionType.LOAD_SIMILAR_MOVIES,
+      payload: similarMovies,
+    };
+  },
+  resetSimilarMovies() {
+    return {
+      type: ActionType.RESET_SIMILAR_MOVIES,
+      payload: null
     };
   }
 };

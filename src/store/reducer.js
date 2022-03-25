@@ -1,11 +1,15 @@
 import {ActionType} from "./actions";
 
 const initialState = {
-  movies: [],
-  promoMovie: {},
   currentGenreFilter: ``,
+  movies: [],
   isMoviesLoaded: false,
+  promoMovie: {},
   isPromoLoaded: false,
+  movieById: {},
+  isMovieByIdLoaded: false,
+  similarMovies: [],
+  isSimilarMoviesLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,7 +21,11 @@ const reducer = (state = initialState, action) => {
         isMoviesLoaded: true,
       };
     case ActionType.LOAD_ONE_MOVIE:
-      return state;
+      return {
+        ...state,
+        movieById: action.payload,
+        isMovieByIdLoaded: true,
+      };
     case ActionType.CHANGE_FILTER:
       return {
         ...state,
@@ -28,6 +36,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         promoMovie: action.payload,
         isPromoLoaded: true,
+      };
+    case ActionType.LOAD_SIMILAR_MOVIES:
+      return {
+        ...state,
+        similarMovies: action.payload,
+        isSimilarMoviesLoaded: true,
+      };
+    case ActionType.RESET_SIMILAR_MOVIES:
+      return {
+        ...state,
+        similarMovies: [],
+        isSimilarMoviesLoaded: false,
       };
   }
 

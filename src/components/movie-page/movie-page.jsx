@@ -9,7 +9,8 @@ import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
 
 import MovieDesc from "../movie-desc/movie-desc";
-
+import MovieCardBg from "../movie-card-bg/movie-card-bg";
+import Poster from "../movie-card-poster/movie-card-poster";
 
 const MoviePage = (props) => {
   const {movies} = props;
@@ -25,9 +26,7 @@ const MoviePage = (props) => {
         style={{backgroundColor}}
       >
         <div className="movie-card__hero">
-          <div className="movie-card__bg">
-            <img src={backgroundImage} alt={name} />
-          </div>
+          <MovieCardBg src={backgroundImage} alt={name}/>
 
           <h1 className="visually-hidden">WTW</h1>
 
@@ -65,10 +64,7 @@ const MoviePage = (props) => {
 
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
-            <div className="movie-card__poster movie-card__poster--big">
-              <img src={poster} alt={`${name} poster`} width="218" height="327" />
-            </div>
-
+            <Poster src={poster} alt={name} big/>
             <MovieDesc movie={currentMovie} />
           </div>
         </div>

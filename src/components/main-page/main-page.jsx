@@ -7,6 +7,8 @@ import PageLogo from "../page-logo/page-logo";
 import GenresList from "../genres-list/genres-list";
 import MoviesList from "../movies-list/movies-list";
 import UserBlock from "../user-block/user-block";
+import MovieCardBg from "../movie-card-bg/movie-card-bg";
+import Poster from "../movie-card-poster/movie-card-poster";
 
 const MainPage = (props) => {
   const {movies, promoMovie, isMoviesLoaded} = props;
@@ -15,9 +17,7 @@ const MainPage = (props) => {
   return (
     <Fragment>
       <section className="movie-card">
-        <div className="movie-card__bg">
-          <img src={backgroundImage} alt={name} />
-        </div>
+        <MovieCardBg src={backgroundImage} alt={name}/>
 
         <h1 className="visually-hidden">WTW</h1>
 
@@ -28,9 +28,7 @@ const MainPage = (props) => {
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
-            <div className="movie-card__poster">
-              <img src={poster} alt={`${name} poster`} width="218" height="327" />
-            </div>
+            <Poster src={poster} alt={name}/>
 
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{name}</h2>
