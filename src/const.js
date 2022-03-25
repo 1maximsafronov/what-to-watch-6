@@ -3,3 +3,6 @@ export const MovieTab = {
   DETAILS: `Details`,
   REVIEWS: `Reviews`,
 };
+
+
+export const allGenresItem = `All genres`;

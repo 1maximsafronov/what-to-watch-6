@@ -1,11 +1,14 @@
+import {allGenresItem} from "../const";
+
 const ActionType = {
   LOAD_MOVIES: `data/loadMovies`,
   LOAD_ONE_MOVIE: `data/loadOneMovie`,
-  CHANGE_FILTER: `data/changeFilter`,
+  CHENGE_GENRE_FILTER: `data/changeGenreFilter`,
   LOAD_PROMO_MOVIE: `data/loadPromoMovie`,
   LOAD_SIMILAR_MOVIES: `data/loadSimilarMovies`,
   RESET_SIMILAR_MOVIES: `data/resetSimilarMovies`,
-  RESET_MOVIE_BY_ID: `data/resetMovieById`
+  RESET_MOVIE_BY_ID: `data/resetMovieById`,
+  SET_GENRES_LIST: `data/setGenresList`
 };
 
 
@@ -16,10 +19,19 @@ const ActionCreator = {
       payload: movies
     };
   },
-  changeFilter(filterType) {
+  setGenresList(movies) {
+    const genres = movies.map((movie) => movie.genre);
+    const unicGenres = [allGenresItem, ...new Set(genres)];
+
     return {
-      type: ActionType.CHANGE_FILTER,
-      payload: filterType
+      type: ActionType.SET_GENRES_LIST,
+      payload: unicGenres,
+    };
+  },
+  changeGenreFilter(genreType) {
+    return {
+      type: ActionType.CHENGE_GENRE_FILTER,
+      payload: genreType
     };
   },
   loadOneMovie(movie) {

@@ -1,33 +1,40 @@
-import React, {useState} from "react";
+import React from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/actions";
+
 import Item from "../genres-list-item/genres-list-item";
 
-const genresList = [
-  `All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thrillers`
-];
-
-const GenresList = () => {
-  const [currentGenre, setGenre] = useState(`All genres`);
-
+const GenresList = ({items, onGenreChange, currentGenre}) => {
   return (
     <ul className="catalog__genres-list">
-      {genresList.map((genre, index) => (
+      {items.map((genre, index) => (
         <Item key={`genre-${index}`}
           genre={genre}
           isActive={genre === currentGenre}
-          onClick={() => setGenre(genre)}
+          onClick={() => onGenreChange(genre)}
         />
       ))}
     </ul>
   );
 };
 
-export default GenresList;
+GenresList.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentGenre: PropTypes.string.isRequired,
+  onGenreChange: PropTypes.func
+};
+
+const mapStateToProps = (state) => ({
+  currentGenre: state.currentGenreFilter,
+  items: state.genresList,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreChange(genre) {
+    dispatch(ActionCreator.changeGenreFilter(genre));
+  }
+});
+
+export {GenresList};
+export default connect(mapStateToProps, mapDispatchToProps)(GenresList);

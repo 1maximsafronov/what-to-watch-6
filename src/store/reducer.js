@@ -1,7 +1,7 @@
 import {ActionType} from "./actions";
+import {allGenresItem} from "../const";
 
 const initialState = {
-  currentGenreFilter: ``,
   movies: [],
   isMoviesLoaded: false,
   promoMovie: {},
@@ -10,6 +10,8 @@ const initialState = {
   isMovieByIdLoaded: false,
   similarMovies: [],
   isSimilarMoviesLoaded: false,
+  genresList: [],
+  currentGenreFilter: allGenresItem,
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +28,7 @@ const reducer = (state = initialState, action) => {
         movieById: action.payload,
         isMovieByIdLoaded: true,
       };
-    case ActionType.CHANGE_FILTER:
+    case ActionType.CHENGE_GENRE_FILTER:
       return {
         ...state,
         currentGenreFilter: action.payload
@@ -54,6 +56,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         movieById: {},
         isMovieByIdLoaded: false,
+      };
+    case ActionType.SET_GENRES_LIST:
+      return {
+        ...state,
+        genresList: action.payload,
       };
   }
 

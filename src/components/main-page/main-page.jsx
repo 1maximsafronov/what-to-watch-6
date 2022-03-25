@@ -10,8 +10,13 @@ import Poster from "../movie-card-poster/movie-card-poster";
 import PageHeader from "../page-header/page-header";
 
 const MainPage = (props) => {
-  const {movies, promoMovie, isMoviesLoaded} = props;
+  const {movies, promoMovie, isMoviesLoaded, isPromoLoaded} = props;
   const {backgroundImage, poster, genre, name, released} = promoMovie;
+
+  if (!isMoviesLoaded || !isPromoLoaded) {
+    return <p>Loading...</p>;
+  }
+
 
   return (
     <Fragment>
@@ -73,12 +78,14 @@ MainPage.propTypes = {
   movies: PropTypes.array,
   promoMovie: PropTypes.object,
   isMoviesLoaded: PropTypes.bool,
+  isPromoLoaded: PropTypes.bool,
 };
 
 const mapSateToProps = (state) => ({
   movies: state.movies,
   promoMovie: state.promoMovie,
   isMoviesLoaded: state.isMoviesLoaded,
+  isPromoLoaded: state.isPromoLoaded,
 });
 
 export {MainPage};

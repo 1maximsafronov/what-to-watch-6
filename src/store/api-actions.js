@@ -6,6 +6,7 @@ export const fetchMovies = () => (dispatch, _getState, api) => {
     .then((response) => {
       const movies = response.data.map(adaptMovieToClient);
       dispatch(ActionCreator.loadMovies(movies));
+      dispatch(ActionCreator.setGenresList(movies));
     });
 };
 export const fetchOneMovie = (id) => (dispatch, _getState, api) => {
