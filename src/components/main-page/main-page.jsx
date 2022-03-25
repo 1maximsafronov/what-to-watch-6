@@ -3,12 +3,11 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
 import PageFooter from "../page-footer/page-footer";
-import PageLogo from "../page-logo/page-logo";
 import GenresList from "../genres-list/genres-list";
 import MoviesList from "../movies-list/movies-list";
-import UserBlock from "../user-block/user-block";
 import MovieCardBg from "../movie-card-bg/movie-card-bg";
 import Poster from "../movie-card-poster/movie-card-poster";
+import PageHeader from "../page-header/page-header";
 
 const MainPage = (props) => {
   const {movies, promoMovie, isMoviesLoaded} = props;
@@ -21,10 +20,7 @@ const MainPage = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <PageLogo />
-          <UserBlock />
-        </header>
+        <PageHeader className="movie-card__head"/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">

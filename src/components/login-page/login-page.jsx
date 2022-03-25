@@ -1,15 +1,13 @@
 import React from "react";
 import PageFooter from "../page-footer/page-footer";
-import PageLogo from "../page-logo/page-logo";
+import PageHeader from "../page-header/page-header";
 
 const LoginPage = () => {
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <PageLogo link="main.html"/>
-
+      <PageHeader className="user-page__head" hideUserBlock>
         <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+      </PageHeader>
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
@@ -29,7 +27,7 @@ const LoginPage = () => {
         </form>
       </div>
 
-      <PageFooter logoLink="main.html" />
+      <PageFooter/>
     </div>
   );
 };

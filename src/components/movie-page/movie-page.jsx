@@ -3,14 +3,13 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {useParams} from "react-router-dom";
 
-import PageLogo from "../page-logo/page-logo";
-import UserBlock from "../user-block/user-block";
 import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
 
 import MovieDesc from "../movie-desc/movie-desc";
 import MovieCardBg from "../movie-card-bg/movie-card-bg";
 import Poster from "../movie-card-poster/movie-card-poster";
+import PageHeader from "../page-header/page-header";
 
 const MoviePage = (props) => {
   const {movies} = props;
@@ -30,10 +29,7 @@ const MoviePage = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <PageLogo link="main.html"/>
-            <UserBlock />
-          </header>
+          <PageHeader className="movie-card__head"/>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -75,7 +71,7 @@ const MoviePage = (props) => {
           <h2 className="catalog__title">More like this</h2>
           <MoviesList movies={movies} />
         </section>
-        <PageFooter logoLink="main.html" />
+        <PageFooter/>
       </div>
     </Fragment>
   );
