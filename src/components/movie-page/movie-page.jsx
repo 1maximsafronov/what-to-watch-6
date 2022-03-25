@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {useParams} from "react-router-dom";
@@ -12,11 +12,13 @@ import Poster from "../movie-card-poster/movie-card-poster";
 import PageHeader from "../page-header/page-header";
 
 import {fetchOneMovie, fetchSimilarMovies} from "../../store/api-actions";
+import {ActionCreator} from "../../store/actions";
 
 const MoviePage = (props) => {
   const {
     movie,
     onDataLoad,
+    onDataReset,
     similarMovies,
     isMovieLoaded,
     isSimilarMoviesLoaded,
@@ -24,10 +26,19 @@ const MoviePage = (props) => {
 
   const {id} = useParams();
 
-  if (!isMovieLoaded && !isSimilarMoviesLoaded) {
+  useEffect(() => {
     onDataLoad(id);
+
+    return () => {
+      onDataReset();
+    };
+  }, [id]);
+
+
+  if (!isMovieLoaded || !isSimilarMoviesLoaded) {
     return <p>Loading...</p>;
   }
+
 
   const {poster, name, genre, backgroundImage, backgroundColor, released} = movie;
 
@@ -81,10 +92,7 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          {isSimilarMoviesLoaded ?
-            <MoviesList movies={similarMovies} /> :
-            <p>Loading...</p>
-          }
+          <MoviesList movies={similarMovies} />
         </section>
         <PageFooter/>
       </div>
@@ -92,12 +100,14 @@ const MoviePage = (props) => {
   );
 };
 
+
 MoviePage.propTypes = {
   movie: PropTypes.object,
   similarMovies: PropTypes.array,
   isMovieLoaded: PropTypes.bool,
   isSimilarMoviesLoaded: PropTypes.bool,
   onDataLoad: PropTypes.func.isRequired,
+  onDataReset: PropTypes.func.isRequired
 };
 
 const mapSateToProps = (state) => ({
@@ -111,6 +121,10 @@ const mapDispatchToProps = (dispatch) => ({
   onDataLoad(id) {
     dispatch(fetchOneMovie(id));
     dispatch(fetchSimilarMovies(id));
+  },
+  onDataReset() {
+    dispatch(ActionCreator.resetMovieById());
+    dispatch(ActionCreator.resetSimilarMovies());
   }
 });
 

@@ -4,7 +4,8 @@ const ActionType = {
   CHANGE_FILTER: `data/changeFilter`,
   LOAD_PROMO_MOVIE: `data/loadPromoMovie`,
   LOAD_SIMILAR_MOVIES: `data/loadSimilarMovies`,
-  RESET_SIMILAR_MOVIES: `data/resetSimilarMovies`
+  RESET_SIMILAR_MOVIES: `data/resetSimilarMovies`,
+  RESET_MOVIE_BY_ID: `data/resetMovieById`
 };
 
 
@@ -43,6 +44,12 @@ const ActionCreator = {
     return {
       type: ActionType.RESET_SIMILAR_MOVIES,
       payload: null
+    };
+  },
+  resetMovieById() {
+    return {
+      type: ActionType.RESET_MOVIE_BY_ID,
+      payload: null,
     };
   }
 };

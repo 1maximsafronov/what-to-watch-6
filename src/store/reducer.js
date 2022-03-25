@@ -49,6 +49,12 @@ const reducer = (state = initialState, action) => {
         similarMovies: [],
         isSimilarMoviesLoaded: false,
       };
+    case ActionType.RESET_MOVIE_BY_ID:
+      return {
+        ...state,
+        movieById: {},
+        isMovieByIdLoaded: false,
+      };
   }
 
   return state;
