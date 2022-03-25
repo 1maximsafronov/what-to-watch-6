@@ -34,6 +34,22 @@ export const formatRunTime = (value) => {
   return str;
 };
 
+export const getRatinLevel = (rating) => {
+  if (rating >= 0 && rating < 3) {
+    return `Bad`;
+  }
+  if (rating >= 3 && rating < 5) {
+    return `Normal`;
+  }
+  if (rating >= 5 && rating < 8) {
+    return `Good`;
+  }
+  if (rating >= 8 && rating < 10) {
+    return `Very good`;
+  }
+
+  return `Awesome`;
+};
 
 /*
 {

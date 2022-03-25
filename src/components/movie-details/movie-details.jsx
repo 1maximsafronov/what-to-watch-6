@@ -1,14 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {formatRunTime} from "../../utils/movies";
 
 
-const MovieDetails = () => {
-  const director = `Wes Andreson`;
-  const runTime = 99;
-  const genre = `Comedy`;
-  const released = `2014`;
-  const starring = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`];
-
+const MovieDetails = ({movie}) => {
+  const {director, genre, released, starring, runTime} = movie;
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
@@ -19,7 +15,7 @@ const MovieDetails = () => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-            {starring}
+            {starring.join(`, \n`)}
             {/* TODO: Придумать как сделать вывод через запятую с <br> */}
             {/* Bill Murray, <br />
             Edward Norton, <br />
@@ -53,6 +49,10 @@ const MovieDetails = () => {
       </div>
     </div>
   );
+};
+
+MovieDetails.propTypes = {
+  movie: PropTypes.object
 };
 
 export default MovieDetails;

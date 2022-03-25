@@ -69,7 +69,7 @@ const MoviePage = (props) => {
               <img src={poster} alt={`${name} poster`} width="218" height="327" />
             </div>
 
-            <MovieDesc />
+            <MovieDesc movie={currentMovie} />
           </div>
         </div>
       </section>
