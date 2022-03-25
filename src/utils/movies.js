@@ -20,6 +20,20 @@ export const adaptMovieToClient = (movie) => {
   };
 };
 
+export const formatRunTime = (value) => {
+  const h = Math.floor(value / 60);
+  const m = value % 60;
+  let str = ``;
+  if (h > 0) {
+    str += `${h}h `;
+  }
+  if (m > 0) {
+    str += `${m}m`;
+  }
+
+  return str;
+};
+
 
 /*
 {
