@@ -10,6 +10,7 @@ import MovieDesc from "../movie-desc/movie-desc";
 import MovieCardBg from "../movie-card-bg/movie-card-bg";
 import Poster from "../movie-card-poster/movie-card-poster";
 import PageHeader from "../page-header/page-header";
+import Buttons from "../movie-card-buttons/movie-card-buttons";
 
 import {fetchOneMovie, fetchSimilarMovies} from "../../store/api-actions";
 import {ActionCreator} from "../../store/actions";
@@ -40,7 +41,8 @@ const MoviePage = (props) => {
   }
 
 
-  const {poster, name, genre, backgroundImage, backgroundColor, released} = movie;
+  const {poster, name, genre, backgroundImage, backgroundColor, released,
+    isFavorite} = movie;
 
   return (
     <Fragment>
@@ -62,28 +64,14 @@ const MoviePage = (props) => {
                 <span className="movie-card__year">{released}</span>
               </p>
 
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
+              <Buttons isFavorite={isFavorite}/>
             </div>
           </div>
         </div>
 
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
-            <Poster src={poster} alt={name} big/>
+            <Poster src={poster} alt={name} size="big"/>
             <MovieDesc movie={movie} />
           </div>
         </div>
@@ -92,7 +80,7 @@ const MoviePage = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoviesList movies={similarMovies} />
+          <MoviesList movies={similarMovies.slice(0, 4)} />
         </section>
         <PageFooter/>
       </div>

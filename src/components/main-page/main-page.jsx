@@ -8,19 +8,20 @@ import MoviesList from "../movies-list/movies-list";
 import MovieCardBg from "../movie-card-bg/movie-card-bg";
 import Poster from "../movie-card-poster/movie-card-poster";
 import PageHeader from "../page-header/page-header";
+import ShowMoreButton from "../catalog-show-more/catalog-show-more";
+import Buttons from "../movie-card-buttons/movie-card-buttons";
 
 const MainPage = (props) => {
   const {movies, promoMovie, isMoviesLoaded, isPromoLoaded} = props;
-  const {backgroundImage, poster, genre, name, released} = promoMovie;
+  const {backgroundImage, poster, genre, name, released, backgroundColor, isFavorite} = promoMovie;
 
   if (!isMoviesLoaded || !isPromoLoaded) {
     return <p>Loading...</p>;
   }
 
-
   return (
     <Fragment>
-      <section className="movie-card">
+      <section className="movie-card" style={{backgroundColor}}>
         <MovieCardBg src={backgroundImage} alt={name}/>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -38,20 +39,7 @@ const MainPage = (props) => {
                 <span className="movie-card__year">{released}</span>
               </p>
 
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-              </div>
+              <Buttons isFavorite={isFavorite}/>
             </div>
           </div>
         </div>
@@ -61,11 +49,9 @@ const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList />
-          {isMoviesLoaded ? <MoviesList movies={movies} /> : <p>Loading...</p>}
+          <MoviesList movies={movies} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMoreButton onClick={() =>{}} />
         </section>
 
         <PageFooter />

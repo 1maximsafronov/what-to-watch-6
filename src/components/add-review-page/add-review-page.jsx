@@ -22,7 +22,7 @@ const AddReviewPage = () => {
           <Breadcrumbs />
         </PageHeader>
 
-        <Poster src={poster} alt={name} small/>
+        <Poster src={poster} alt={name} size="small"/>
       </div>
 
       <AddReviewForm />
