@@ -1,7 +1,8 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {getMovies, getPromoMovie, getMoviesLoadedStatus, getPromoLoadedStatus} from "../../store/app-data/selector";
+import {getPromoMovie, getMoviesLoadedStatus, getPromoLoadedStatus} from "../../store/app-data/selector";
+import {getMoviesByGenre} from "../../store/selectors";
 
 import PageFooter from "../page-footer/page-footer";
 import GenresList from "../genres-list/genres-list";
@@ -13,12 +14,28 @@ import ShowMoreButton from "../catalog-show-more/catalog-show-more";
 import Buttons from "../movie-card-buttons/movie-card-buttons";
 
 const MainPage = (props) => {
+
   const {movies, promoMovie, isMoviesLoaded, isPromoLoaded} = props;
   const {backgroundImage, poster, genre, name, released, backgroundColor, isFavorite} = promoMovie;
 
   if (!isMoviesLoaded || !isPromoLoaded) {
     return <p>Loading...</p>;
   }
+
+  const movieCount = movies.length;
+
+  const [showingMovieCard, setShowingMovieCards] = useState(Math.min(8, movieCount));
+
+  const isShowMoreBtn = showingMovieCard < movieCount;
+
+  useEffect(() => {
+    setShowingMovieCards(Math.min(8, movieCount));
+  }, [movies]);
+
+  const showMoreBtnClickHandler = () =>{
+    const newShowingCards = Math.min(showingMovieCard + 20, movieCount);
+    setShowingMovieCards(newShowingCards);
+  };
 
   return (
     <Fragment>
@@ -50,9 +67,10 @@ const MainPage = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList />
-          <MoviesList movies={movies} />
-
-          <ShowMoreButton onClick={() =>{}} />
+          <MoviesList movies={movies.slice(0, showingMovieCard)} />
+          {isShowMoreBtn && (
+            <ShowMoreButton onClick={showMoreBtnClickHandler} />
+          )}
         </section>
 
         <PageFooter />
@@ -69,7 +87,7 @@ MainPage.propTypes = {
 };
 
 const mapSateToProps = (state) => ({
-  movies: getMovies(state),
+  movies: getMoviesByGenre(state),
   promoMovie: getPromoMovie(state),
   isPromoLoaded: getPromoLoadedStatus(state),
   isMoviesLoaded: getMoviesLoadedStatus(state),
