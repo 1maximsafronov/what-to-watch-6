@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/actions";
-
+import {getGenresList, getCurrentGenre} from "../../store/app-process/selector";
 import Item from "../genres-list-item/genres-list-item";
 
 const GenresList = ({items, onGenreChange, currentGenre}) => {
@@ -26,8 +26,8 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentGenre: state.currentGenreFilter,
-  items: state.genresList,
+  currentGenre: getCurrentGenre(state),
+  items: getGenresList(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

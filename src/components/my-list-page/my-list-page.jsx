@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-
+import {getMovies} from "../../store/app-data/selector";
 import PageFooter from "../page-footer/page-footer";
 import MoviesList from "../movies-list/movies-list";
 import PageHeader from "../page-header/page-header";
@@ -31,7 +31,7 @@ MyListPage.propTypes = {
 };
 
 const mapSateToProps = (state) => ({
-  movies: state.movies
+  movies: getMovies(state)
 });
 
 export {MyListPage};

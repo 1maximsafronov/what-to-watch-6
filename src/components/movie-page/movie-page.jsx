@@ -2,6 +2,7 @@ import React, {Fragment, useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {useParams} from "react-router-dom";
+import {getMovieById, getMovieLoadedStatus, getSimilarMovies, getSimilarMoviesLoadedStatus, getMovieComments, getCommentsLoadedStatus} from "../../store/app-process/selector";
 
 import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
@@ -103,12 +104,12 @@ MoviePage.propTypes = {
 };
 
 const mapSateToProps = (state) => ({
-  movie: state.movieById,
-  similarMovies: state.similarMovies,
-  isMovieLoaded: state.isMovieByIdLoaded,
-  isSimilarMoviesLoaded: state.isSimilarMoviesLoaded,
-  movieComments: state.currentMovieComments,
-  isCommentsLoaded: state.isCommentsLoaded,
+  movie: getMovieById(state),
+  similarMovies: getSimilarMovies(state),
+  isMovieLoaded: getMovieLoadedStatus(state),
+  isSimilarMoviesLoaded: getSimilarMoviesLoadedStatus(state),
+  movieComments: getMovieComments(state),
+  isCommentsLoaded: getCommentsLoadedStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

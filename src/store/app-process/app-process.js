@@ -1,11 +1,7 @@
-import {ActionType} from "./actions";
-import {allGenresItem} from "../const";
+import {ActionType} from "../actions";
+import {allGenresItem} from "../../const";
 
 const initialState = {
-  movies: [],
-  isMoviesLoaded: false,
-  promoMovie: {},
-  isPromoLoaded: false,
   movieById: {},
   isMovieByIdLoaded: false,
   similarMovies: [],
@@ -16,14 +12,9 @@ const initialState = {
   isCommentsLoaded: false,
 };
 
-const reducer = (state = initialState, action) => {
+
+const appProcess = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.LOAD_MOVIES:
-      return {
-        ...state,
-        movies: action.payload,
-        isMoviesLoaded: true,
-      };
     case ActionType.LOAD_ONE_MOVIE:
       return {
         ...state,
@@ -34,12 +25,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentGenreFilter: action.payload
-      };
-    case ActionType.LOAD_PROMO_MOVIE:
-      return {
-        ...state,
-        promoMovie: action.payload,
-        isPromoLoaded: true,
       };
     case ActionType.LOAD_SIMILAR_MOVIES:
       return {
@@ -81,4 +66,5 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer};
+
+export {appProcess};

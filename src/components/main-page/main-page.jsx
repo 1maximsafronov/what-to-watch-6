@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {getMovies, getPromoMovie, getMoviesLoadedStatus, getPromoLoadedStatus} from "../../store/app-data/selector";
 
 import PageFooter from "../page-footer/page-footer";
 import GenresList from "../genres-list/genres-list";
@@ -68,10 +69,10 @@ MainPage.propTypes = {
 };
 
 const mapSateToProps = (state) => ({
-  movies: state.movies,
-  promoMovie: state.promoMovie,
-  isMoviesLoaded: state.isMoviesLoaded,
-  isPromoLoaded: state.isPromoLoaded,
+  movies: getMovies(state),
+  promoMovie: getPromoMovie(state),
+  isPromoLoaded: getPromoLoadedStatus(state),
+  isMoviesLoaded: getMoviesLoadedStatus(state),
 });
 
 export {MainPage};
