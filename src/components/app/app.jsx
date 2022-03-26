@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 
 import MainPage from "../main-page/main-page";
 import LoginPage from "../login-page/login-page";
@@ -12,24 +12,18 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <MainPage />
-        </Route>
-        <Route exact path="/login">
-          <LoginPage />
-        </Route>
-        <Route exact path="/mylist">
-          <MyListPage />
-        </Route>
-        <Route exact path="/films/:id">
-          <MoviePage />
-        </Route>
-        <Route exact path="/add-review">
-          <AddReviewPage />
-        </Route>
-        <Route exact path="/player">
-          <MoviePlayerPage />
-        </Route>
+        <Route exact path="/" component={MainPage}/>
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/films/:id" component={MoviePage}/>
+        <Route exact path="/add-review" component={AddReviewPage}/>
+        <Route exact path="/player" component={MoviePlayerPage}/>
+        <Route exact path="/mylist" component={MyListPage} />
+        <Route render={() => (
+          <div>
+            <h1>404 страница не найдена</h1>
+            <Link to="/">На главну</Link>
+          </div>
+        )}/>
       </Switch>
     </BrowserRouter>
   );
