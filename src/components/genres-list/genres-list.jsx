@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/actions";
+import {changeGenreFilter} from "../../store/actions";
 import {getGenresList, getCurrentGenre} from "../../store/app-process/selector";
 import Item from "../genres-list-item/genres-list-item";
 
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreChange(genre) {
-    dispatch(ActionCreator.changeGenreFilter(genre));
+    dispatch(changeGenreFilter(genre));
   }
 });
 

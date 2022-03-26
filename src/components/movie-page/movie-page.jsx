@@ -14,7 +14,7 @@ import PageHeader from "../page-header/page-header";
 import Buttons from "../movie-card-buttons/movie-card-buttons";
 
 import {fetchOneMovie, fetchSimilarMovies, fetchMovieComments} from "../../store/api-actions";
-import {ActionCreator} from "../../store/actions";
+import {resetMovieById, resetSimilarMovies, resetMovieComments} from "../../store/actions";
 
 const MoviePage = (props) => {
   const {
@@ -119,9 +119,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchMovieComments(id));
   },
   onDataReset() {
-    dispatch(ActionCreator.resetMovieById());
-    dispatch(ActionCreator.resetSimilarMovies());
-    dispatch(ActionCreator.resetMovieComments());
+    dispatch(resetMovieById());
+    dispatch(resetSimilarMovies());
+    dispatch(resetMovieComments());
   }
 });
 
