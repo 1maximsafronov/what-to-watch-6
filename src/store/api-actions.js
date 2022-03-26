@@ -2,6 +2,31 @@ import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovi
 import {adaptMovieToClient} from "../utils/movies";
 import {adaptCommentToClient} from "../utils/comments";
 
+export const checkAuth = () => (dispatch, _getState, api) => {
+  return api.get(`/login`)
+    .then((response) => {
+
+    });
+};
+
+export const login = (loginData) => (dispatch, _getState, api) => {
+  return api.post(`/login`, {
+    "email": loginData.email,
+    "password": loginData.password
+  })
+    .then((response) => {
+
+    });
+};
+
+export const logout = () => (dispatch, _getState, api) => {
+  return api.delete(`/logout`)
+    .then(() => {
+
+    });
+};
+
+
 export const fetchMovies = () => (dispatch, _getState, api) => {
   return api.get(`/films`)
     .then((response) => {
