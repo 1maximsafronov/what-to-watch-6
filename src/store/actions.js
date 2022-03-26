@@ -2,20 +2,20 @@ import {allGenresItem} from "../const";
 
 const ActionType = {
   LOAD_MOVIES: `data/loadMovies`,
-  LOAD_ONE_MOVIE: `data/loadOneMovie`,
-  CHENGE_GENRE_FILTER: `data/changeGenreFilter`,
-  LOAD_PROMO_MOVIE: `data/loadPromoMovie`,
-  LOAD_SIMILAR_MOVIES: `data/loadSimilarMovies`,
-  RESET_SIMILAR_MOVIES: `data/resetSimilarMovies`,
-  RESET_MOVIE_BY_ID: `data/resetMovieById`,
-  SET_GENRES_LIST: `data/setGenresList`,
   LOAD_COMMENTS: `data/loadComments`,
-  REST_MOVIE_COMMENTS: `data/resetMovieComments`,
+  LOAD_ONE_MOVIE: `data/loadOneMovie`,
   LOAD_USER_INFO: `user/loadUserInfo`,
   RESET_USER_INFO: `user/resetUserInfo`,
-  REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
-  REDIRECT_TO_ROUTE: `process/redirectToRoute`,
   LOAD_FAVORITE: `process/loadFavorite`,
+  SET_GENRES_LIST: `data/setGenresList`,
+  LOAD_PROMO_MOVIE: `data/loadPromoMovie`,
+  RESET_MOVIE_BY_ID: `data/resetMovieById`,
+  REDIRECT_TO_ROUTE: `process/redirectToRoute`,
+  CHENGE_GENRE_FILTER: `data/changeGenreFilter`,
+  LOAD_SIMILAR_MOVIES: `data/loadSimilarMovies`,
+  REST_MOVIE_COMMENTS: `data/resetMovieComments`,
+  RESET_SIMILAR_MOVIES: `data/resetSimilarMovies`,
+  REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
 };
 
 export const loadMovies = (movies) =>{

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 import SmallMovieCard from "../small-movie-card/small-movie-card";
 
-
 const MoviesList = (props) => {
   const {movies} = props;
   return (

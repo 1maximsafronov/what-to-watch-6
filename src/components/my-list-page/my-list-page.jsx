@@ -1,8 +1,10 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+
 import {getFavoriteMovies, getFavoriteStatus} from "../../store/app-process/selector";
 import {fetchFavoriteMovies} from "../../store/api-actions";
+
 import PageFooter from "../page-footer/page-footer";
 import MoviesList from "../movies-list/movies-list";
 import PageHeader from "../page-header/page-header";

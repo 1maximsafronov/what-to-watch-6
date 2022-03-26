@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
 const MovieCardBg = ({src, alt}) => {
   return (
     <div className="movie-card__bg">

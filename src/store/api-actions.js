@@ -14,7 +14,6 @@ export const checkAuth = () => (dispatch, _getState, api) => {
         dropToken();
       });
 };
-
 export const login = (loginData) => (dispatch, _getState, api) => {
   return api.post(`/login`, {
     "email": loginData.email,
@@ -28,7 +27,6 @@ export const login = (loginData) => (dispatch, _getState, api) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     });
 };
-
 export const logout = () => (dispatch, _getState, api) => {
   return api.delete(`/logout`)
     .then(() => {
@@ -37,8 +35,6 @@ export const logout = () => (dispatch, _getState, api) => {
       dispatch(resetUserInfo());
     });
 };
-
-
 export const fetchMovies = () => (dispatch, _getState, api) => {
   return api.get(`/films`)
     .then((response) => {

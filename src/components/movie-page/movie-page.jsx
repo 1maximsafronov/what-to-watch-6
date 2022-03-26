@@ -1,17 +1,17 @@
 import React, {Fragment, useEffect} from "react";
+import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {useParams} from "react-router-dom";
+
 import {getMovieById, getMovieLoadedStatus, getSimilarMovies, getSimilarMoviesLoadedStatus, getMovieComments, getCommentsLoadedStatus} from "../../store/app-process/selector";
 
 import MoviesList from "../movies-list/movies-list";
 import PageFooter from "../page-footer/page-footer";
-
-import MovieDesc from "../movie-desc/movie-desc";
-import MovieCardBg from "../movie-card-bg/movie-card-bg";
 import Poster from "../movie-card-poster/movie-card-poster";
-import PageHeader from "../page-header/page-header";
 import Buttons from "../movie-card-buttons/movie-card-buttons";
+import MovieDesc from "../movie-desc/movie-desc";
+import PageHeader from "../page-header/page-header";
+import MovieCardBg from "../movie-card-bg/movie-card-bg";
 
 import {fetchOneMovie, fetchSimilarMovies, fetchMovieComments} from "../../store/api-actions";
 import {resetMovieById, resetSimilarMovies, resetMovieComments} from "../../store/actions";

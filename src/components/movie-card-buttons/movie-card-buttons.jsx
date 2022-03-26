@@ -1,11 +1,12 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+
 import {getAuthorizationStatus} from "../../store/user-data/selector";
-import {addToFavorite} from "../../store/api-actions";
 import {AuthorizationStatus} from "../../const";
 import {redirectToRoute} from "../../store/actions";
+import {addToFavorite} from "../../store/api-actions";
 
 const MovieCardButtons = (props) => {
   const {isFavorite, movieId, onFavoriteClick, authorizationStatus, redirect} = props;

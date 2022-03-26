@@ -1,9 +1,11 @@
 import React, {useRef} from "react";
 import PropTypes from "prop-types";
-import PageFooter from "../page-footer/page-footer";
-import PageHeader from "../page-header/page-header";
 import {connect} from "react-redux";
+
 import {login} from "../../store/api-actions";
+
+import PageHeader from "../page-header/page-header";
+import PageFooter from "../page-footer/page-footer";
 
 const checkEmail = (email) => {
   let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDom from "react-dom";
-import {createStore, applyMiddleware} from "redux";
-import {Provider} from "react-redux";
 import thunk from "redux-thunk";
-import rootReducer from "./store/root-reducer";
-import {createAPI} from "./service/api";
+import {Provider} from "react-redux";
+import {createStore, applyMiddleware} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
+
+import {createAPI} from "./service/api";
+import rootReducer from "./store/root-reducer";
 import {redirect} from "./store/middlewares/redirect";
-import App from "./components/app/app.jsx";
-import {AuthorizationStatus} from "./const";
 import {requireAuthorization} from "./store/actions";
 import {fetchMovies, fetchPromoMovie, checkAuth} from "./store/api-actions";
+
+import {AuthorizationStatus} from "./const";
+
+import App from "./components/app/app.jsx";
 
 const api = createAPI(() => {
   store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -23,6 +26,7 @@ const store = createStore(
         applyMiddleware(redirect)
     )
 );
+
 store.dispatch(checkAuth());
 store.dispatch(fetchMovies());
 store.dispatch(fetchPromoMovie());

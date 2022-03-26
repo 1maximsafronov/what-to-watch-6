@@ -1,10 +1,12 @@
-import React from "react";
 import {Router as BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import React from "react";
+
 import browserHistory from "../../browser-history";
+
 import MainPage from "../main-page/main-page";
 import LoginPage from "../login-page/login-page";
-import MyListPage from "../my-list-page/my-list-page";
 import MoviePage from "../movie-page/movie-page";
+import MyListPage from "../my-list-page/my-list-page";
 import AddReviewPage from "../add-review-page/add-review-page";
 import MoviePlayerPage from "../movie-player-page/movie-player-page";
 

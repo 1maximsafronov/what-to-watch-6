@@ -7,7 +7,6 @@ const initialState = {
   isPromoLoaded: false,
 };
 
-
 const appData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_MOVIES:
@@ -25,6 +24,5 @@ const appData = (state = initialState, action) => {
   }
   return state;
 };
-
 
 export {appData};

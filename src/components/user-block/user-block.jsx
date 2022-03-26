@@ -1,8 +1,9 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import {getAuthorizationStatus, getUserInfo} from "../../store/user-data/selector";
 import {connect} from "react-redux";
+
+import {getAuthorizationStatus, getUserInfo} from "../../store/user-data/selector";
 import {AuthorizationStatus} from "../../const";
 
 const UserBlock = (props) => {

@@ -1,17 +1,18 @@
 import React, {Fragment, useState, useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+
 import {getPromoMovie, getMoviesLoadedStatus, getPromoLoadedStatus} from "../../store/app-data/selector";
 import {getMoviesByGenre} from "../../store/selectors";
 
+import Poster from "../movie-card-poster/movie-card-poster";
+import Buttons from "../movie-card-buttons/movie-card-buttons";
 import PageFooter from "../page-footer/page-footer";
 import GenresList from "../genres-list/genres-list";
 import MoviesList from "../movies-list/movies-list";
-import MovieCardBg from "../movie-card-bg/movie-card-bg";
-import Poster from "../movie-card-poster/movie-card-poster";
 import PageHeader from "../page-header/page-header";
+import MovieCardBg from "../movie-card-bg/movie-card-bg";
 import ShowMoreButton from "../catalog-show-more/catalog-show-more";
-import Buttons from "../movie-card-buttons/movie-card-buttons";
 
 const MainPage = (props) => {
 
