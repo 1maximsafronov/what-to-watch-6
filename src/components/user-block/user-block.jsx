@@ -1,8 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
+import {getAuthorizationStatus, getUserInfo} from "../../store/user-data/selector";
+import {connect} from "react-redux";
+import {AuthorizationStatus} from "../../const";
 
-const UserBlock = () => {
-  const isLogined = true;
+const UserBlock = (props) => {
+  const {authorizationStatus, userInfo} = props;
+  const isLogined = authorizationStatus === AuthorizationStatus.AUTH;
 
   if (!isLogined) {
     return (
@@ -12,7 +17,7 @@ const UserBlock = () => {
     );
   }
 
-  const avatar = `img/avatar.jpg`;
+  const avatar = userInfo[`avatar_url`];
 
   return (
     <div className="user-block">
@@ -23,4 +28,14 @@ const UserBlock = () => {
   );
 };
 
-export default UserBlock;
+UserBlock.propTypes = {
+  authorizationStatus: PropTypes.string,
+  userInfo: PropTypes.object
+};
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userInfo: getUserInfo(state),
+});
+
+export default connect(mapStateToProps, null)(UserBlock);

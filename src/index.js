@@ -8,10 +8,13 @@ import {createAPI} from "./service/api";
 import {composeWithDevTools} from "redux-devtools-extension";
 
 import App from "./components/app/app.jsx";
+import {AuthorizationStatus} from "./const";
+import {requireAuthorization} from "./store/actions";
+import {fetchMovies, fetchPromoMovie, checkAuth} from "./store/api-actions";
 
-import {fetchMovies, fetchPromoMovie} from "./store/api-actions";
-
-const api = createAPI(() => {});
+const api = createAPI(() => {
+  store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+});
 
 const store = createStore(
     rootReducer,
@@ -19,7 +22,7 @@ const store = createStore(
         applyMiddleware(thunk.withExtraArgument(api))
     )
 );
-
+store.dispatch(checkAuth());
 store.dispatch(fetchMovies());
 store.dispatch(fetchPromoMovie());
 

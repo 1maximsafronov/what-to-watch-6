@@ -1,9 +1,22 @@
 import React, {useRef} from "react";
 import PageFooter from "../page-footer/page-footer";
 import PageHeader from "../page-header/page-header";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {login} from "../../store/api-actions";
 
-const LoginPage = () => {
+const checkEmail = (email) => {
+  let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  let address = email;
+  if (reg.test(address) === false) {
+    return false;
+  }
 
+  return true;
+};
+
+const LoginPage = (props) => {
+  const {onSubmit} = props;
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -12,6 +25,13 @@ const LoginPage = () => {
 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+
+    if (checkEmail(email) && password.length > 3) {
+      onSubmit({
+        email,
+        password
+      });
+    }
   };
 
   return (
@@ -50,4 +70,14 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+LoginPage.propTypes = {
+  onSubmit: PropTypes.func
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(loginData) {
+    dispatch(login(loginData));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(LoginPage);

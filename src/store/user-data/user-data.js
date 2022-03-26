@@ -3,13 +3,7 @@ import {AuthorizationStatus} from "../../const";
 
 
 const initialState = {
-  userInfo: {
-    "id": 1,
-    "email": `Oliver.conner@gmail.com`,
-    "name": `Oliver.conner`,
-    "avatar_url": `img/1.png`,
-    "token": `T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=`
-  },
+  userInfo: {},
   authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
