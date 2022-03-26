@@ -1,8 +1,19 @@
-import React from "react";
+import React, {useRef} from "react";
 import PageFooter from "../page-footer/page-footer";
 import PageHeader from "../page-header/page-header";
 
 const LoginPage = () => {
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const submitHandler = (evt) => {
+    evt.preventDefault();
+
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+  };
+
   return (
     <div className="user-page">
       <PageHeader className="user-page__head" hideUserBlock>
@@ -10,14 +21,21 @@ const LoginPage = () => {
       </PageHeader>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
+        <form onSubmit={submitHandler} action="#" className="sign-in__form">
+          <div className="sign-in__message">
+            <p>Please enter a valid email address</p>
+          </div>
+          <div className="sign-in__message">
+            <p>We can&apos;t recognize this email <br />
+            and password combination. Please try again.</p>
+          </div>
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+              <input ref={emailRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+              <input ref={passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
