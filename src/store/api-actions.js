@@ -2,13 +2,17 @@ import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovi
 import {adaptMovieToClient} from "../utils/movies";
 import {adaptCommentToClient} from "../utils/comments";
 import {AuthorizationStatus} from "../const";
+import {saveToken, dropToken} from "../service/token";
 
 export const checkAuth = () => (dispatch, _getState, api) => {
   return api.get(`/login`)
     .then((response) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(loadUserInfo(response.data));
-    });
+    })
+      .catch(() => {
+        dropToken();
+      });
 };
 
 export const login = (loginData) => (dispatch, _getState, api) => {
@@ -17,14 +21,18 @@ export const login = (loginData) => (dispatch, _getState, api) => {
     "password": loginData.password
   })
     .then((response) => {
+      const data = response.data;
+      saveToken(data.token);
+      delete data.token;
+      dispatch(loadUserInfo(data));
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(loadUserInfo(response.data));
     });
 };
 
 export const logout = () => (dispatch, _getState, api) => {
   return api.delete(`/logout`)
     .then(() => {
+      dropToken();
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
       dispatch(resetUserInfo());
     });
@@ -73,10 +81,7 @@ export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
       const movie = adaptMovieToClient(response.data);
       dispatch(fetchPromoMovie());
       dispatch(loadOneMovie(movie));
-    })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
 };
 
 

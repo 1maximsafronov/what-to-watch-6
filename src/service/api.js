@@ -1,5 +1,5 @@
-
 import Axios from "axios";
+import {getToken} from "./token";
 
 const Error = {
   UNAUTHORIZED: 401
@@ -28,6 +28,15 @@ export const createAPI = (onUnauthorized) => {
   };
 
   api.interceptors.response.use(onSuccess, onError);
+  api.interceptors.request.use((config) => {
+    const token = getToken();
+
+    if (token) {
+      config.headers[`x-token`] = token;
+    }
+
+    return config;
+  });
 
   return api;
 };
