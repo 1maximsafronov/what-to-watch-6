@@ -14,7 +14,8 @@ const ActionType = {
   LOAD_USER_INFO: `user/loadUserInfo`,
   RESET_USER_INFO: `user/resetUserInfo`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
-  REDIRECT_TO_ROUTE: `process/redirectToRoute`
+  REDIRECT_TO_ROUTE: `process/redirectToRoute`,
+  LOAD_FAVORITE: `process/loadFavorite`,
 };
 
 export const loadMovies = (movies) =>{
@@ -103,6 +104,13 @@ export const redirectToRoute = (route) => {
   return {
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: route
+  };
+};
+
+export const loadFavorite = (favoriteMovies) => {
+  return {
+    type: ActionType.LOAD_FAVORITE,
+    payload: favoriteMovies
   };
 };
 

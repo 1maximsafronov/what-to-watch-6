@@ -10,6 +10,8 @@ const initialState = {
   currentGenreFilter: allGenresItem,
   currentMovieComments: [],
   isCommentsLoaded: false,
+  favoriteMovies: [],
+  isFavoriteLoaded: false,
 };
 
 
@@ -60,6 +62,12 @@ const appProcess = (state = initialState, action) => {
         ...state,
         currentMovieComments: [],
         isCommentsLoaded: false,
+      };
+    case ActionType.LOAD_FAVORITE:
+      return {
+        ...state,
+        favoriteMovies: action.payload,
+        isFavoriteLoaded: true,
       };
   }
 

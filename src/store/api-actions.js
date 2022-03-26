@@ -1,4 +1,4 @@
-import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovies, loadComments, loadUserInfo, requireAuthorization, resetUserInfo} from "./actions";
+import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovies, loadComments, loadUserInfo, requireAuthorization, resetUserInfo, loadFavorite} from "./actions";
 import {adaptMovieToClient} from "../utils/movies";
 import {adaptCommentToClient} from "../utils/comments";
 import {AuthorizationStatus} from "../const";
@@ -73,6 +73,13 @@ export const fetchMovieComments = (id) => (dispatch, _getState, api) => {
     .then((response) => {
       const comments = response.data.map(adaptCommentToClient);
       dispatch(loadComments(comments));
+    });
+};
+export const fetchFavoriteMovies = () => (dispatch, _getState, api) => {
+  return api.get(`/favorite`)
+    .then((response) => {
+      const movies = response.data.map(adaptMovieToClient);
+      dispatch(loadFavorite(movies));
     });
 };
 export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
