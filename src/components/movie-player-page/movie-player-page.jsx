@@ -58,6 +58,19 @@ const MoviePlayerPage = (props) => {
 
   const percent = (1 - (timer / duration)) * 100;
 
+  const fullScreenBtnClickHandler = () => {
+    const video = videoRef.current;
+    if (video.requestFullScreen) {
+      video.requestFullScreen();
+    } else if (video.mozRequestFullScreen) {
+      video.mozRequestFullScreen();
+    } else if (video.webkitRequestFullScreen) {
+      video.webkitRequestFullScreen();
+    } else if (video.msRequestFullScreen) {
+      video.msRequestFullScreen();
+    }
+  };
+
   return (
     <div className="player">
       <video
@@ -72,6 +85,8 @@ const MoviePlayerPage = (props) => {
           const newTimer = duration - Math.floor(videoRef.current.currentTime);
           setTimer(newTimer);
         }}
+        // onPlay={() => setIsPlaying(true)}
+        // onPause={() => setIsPlaying(false)}
       />
 
       <button type="button" className="player__exit"
@@ -89,7 +104,7 @@ const MoviePlayerPage = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
+            <progress className="player__progress" value={`${percent}`} max="100"></progress>
             <div className="player__toggler" style={{left: `${percent}%`}}>Toggler</div>
           </div>
           {/* <div className="player__time-value">1:30:29</div> */}
@@ -114,9 +129,15 @@ const MoviePlayerPage = (props) => {
             )}
             <span>Play</span>
           </button>
-          <div className="player__name">{name}</div>
+          {isVideoLoading ? (
+            <div className="player__name">Video is loading...</div>
+          ) : (
+            <div className="player__name">{name}</div>
+          )}
 
-          <button type="button" className="player__full-screen">
+          <button type="button" className="player__full-screen"
+            onClick={fullScreenBtnClickHandler}
+          >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
