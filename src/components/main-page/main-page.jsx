@@ -16,7 +16,7 @@ import Buttons from "../movie-card-buttons/movie-card-buttons";
 const MainPage = (props) => {
 
   const {movies, promoMovie, isMoviesLoaded, isPromoLoaded} = props;
-  const {backgroundImage, poster, genre, name, released, backgroundColor, isFavorite} = promoMovie;
+  const {id, backgroundImage, poster, genre, name, released, backgroundColor, isFavorite} = promoMovie;
 
   if (!isMoviesLoaded || !isPromoLoaded) {
     return <p>Loading...</p>;
@@ -57,7 +57,7 @@ const MainPage = (props) => {
                 <span className="movie-card__year">{released}</span>
               </p>
 
-              <Buttons isFavorite={isFavorite}/>
+              <Buttons movieId={id} isFavorite={isFavorite}/>
             </div>
           </div>
         </div>

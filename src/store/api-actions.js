@@ -67,6 +67,18 @@ export const fetchMovieComments = (id) => (dispatch, _getState, api) => {
       dispatch(loadComments(comments));
     });
 };
+export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
+  return api.post(`/favorite/${id}/${status}`)
+    .then((response) => {
+      const movie = adaptMovieToClient(response.data);
+      dispatch(fetchPromoMovie());
+      dispatch(loadOneMovie(movie));
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+};
+
 
 /*
 

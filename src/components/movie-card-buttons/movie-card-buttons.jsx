@@ -1,8 +1,15 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getAuthorizationStatus} from "../../store/user-data/selector";
+import {addToFavorite} from "../../store/api-actions";
+import {AuthorizationStatus} from "../../const";
 
+const MovieCardButtons = (props) => {
+  const {isFavorite, movieId, onFavoriteClick, authorizationStatus} = props;
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
-const MovieCardButtons = ({isFavorite}) => {
   return (
     <div className="movie-card__buttons">
       <button className="btn btn--play movie-card__button" type="button">
@@ -11,7 +18,12 @@ const MovieCardButtons = ({isFavorite}) => {
         </svg>
         <span>Play</span>
       </button>
-      <button className="btn btn--list movie-card__button" type="button">
+      <button className="btn btn--list movie-card__button" type="button"
+        onClick={() => {
+          const status = isFavorite ? 0 : 1;
+          onFavoriteClick(movieId, status);
+        }}
+      >
         {isFavorite ? (
           <svg viewBox="0 0 18 14" width="18" height="14">
             <use xlinkHref="#in-list"></use>
@@ -23,13 +35,32 @@ const MovieCardButtons = ({isFavorite}) => {
         )}
         <span>My list</span>
       </button>
-      <a href="add-review.html" className="btn movie-card__button">Add review</a>
+      {isAuthorized && (
+        <Link to="/add-review" className="btn movie-card__button">Add review</Link>
+      )}
+
     </div>
   );
 };
 
 MovieCardButtons.propTypes = {
-  isFavorite: PropTypes.bool
+  movieId: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
+  isFavorite: PropTypes.bool,
+  authorizationStatus: PropTypes.string,
+  onFavoriteClick: PropTypes.func
 };
 
-export default MovieCardButtons;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFavoriteClick(id, status) {
+    dispatch(addToFavorite(id, status));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCardButtons);

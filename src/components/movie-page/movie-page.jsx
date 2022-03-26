@@ -67,7 +67,7 @@ const MoviePage = (props) => {
                 <span className="movie-card__year">{released}</span>
               </p>
 
-              <Buttons isFavorite={isFavorite}/>
+              <Buttons movieId={id} isFavorite={isFavorite}/>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
+import PropTypes from "prop-types";
 import PageFooter from "../page-footer/page-footer";
 import PageHeader from "../page-header/page-header";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {login} from "../../store/api-actions";
 
@@ -15,14 +15,15 @@ const checkEmail = (email) => {
   return true;
 };
 
+
 const LoginPage = (props) => {
   const {onSubmit} = props;
   const emailRef = useRef();
   const passwordRef = useRef();
 
+
   const submitHandler = (evt) => {
     evt.preventDefault();
-
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
@@ -42,13 +43,13 @@ const LoginPage = (props) => {
 
       <div className="sign-in user-page__content">
         <form onSubmit={submitHandler} action="#" className="sign-in__form">
-          <div className="sign-in__message">
-            <p>Please enter a valid email address</p>
-          </div>
-          <div className="sign-in__message">
+          {/* <div className="sign-in__message">
+            <p>{errrorMessage}</p>
+          </div> */}
+          {/* <div className="sign-in__message">
             <p>We can&apos;t recognize this email <br />
             and password combination. Please try again.</p>
-          </div>
+          </div> */}
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input ref={emailRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
