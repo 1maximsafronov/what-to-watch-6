@@ -4,5 +4,9 @@ export const MovieTab = {
   REVIEWS: `Reviews`,
 };
 
-
 export const allGenresItem = `All genres`;
+
+export const AuthorizationStatus = {
+  NO_AUTH: `NO_AUTH`,
+  AUTH: `AUTH`
+};

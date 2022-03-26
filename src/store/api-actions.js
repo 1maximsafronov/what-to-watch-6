@@ -1,11 +1,13 @@
-import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovies, loadComments} from "./actions";
+import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovies, loadComments, loadUserInfo, requireAuthorization, resetUserInfo} from "./actions";
 import {adaptMovieToClient} from "../utils/movies";
 import {adaptCommentToClient} from "../utils/comments";
+import {AuthorizationStatus} from "../const";
 
 export const checkAuth = () => (dispatch, _getState, api) => {
   return api.get(`/login`)
     .then((response) => {
-
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(loadUserInfo(response.data));
     });
 };
 
@@ -15,14 +17,16 @@ export const login = (loginData) => (dispatch, _getState, api) => {
     "password": loginData.password
   })
     .then((response) => {
-
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(loadUserInfo(response.data));
     });
 };
 
 export const logout = () => (dispatch, _getState, api) => {
   return api.delete(`/logout`)
     .then(() => {
-
+      dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+      dispatch(resetUserInfo());
     });
 };
 

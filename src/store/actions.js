@@ -10,7 +10,10 @@ const ActionType = {
   RESET_MOVIE_BY_ID: `data/resetMovieById`,
   SET_GENRES_LIST: `data/setGenresList`,
   LOAD_COMMENTS: `data/loadComments`,
-  REST_MOVIE_COMMENTS: `data/resetMovieComments`
+  REST_MOVIE_COMMENTS: `data/resetMovieComments`,
+  LOAD_USER_INFO: `user/loadUserInfo`,
+  RESET_USER_INFO: `user/resetUserInfo`,
+  REQUIRE_AUTHORIZATION: `user/requireAuthorization`
 };
 
 export const loadMovies = (movies) =>{
@@ -76,6 +79,23 @@ export const resetMovieComments = () =>{
     payload: null
   };
 };
-
+export const loadUserInfo = (userInfo) => {
+  return {
+    type: ActionType.LOAD_USER_INFO,
+    payload: userInfo,
+  };
+};
+export const resetUserInfo = () => {
+  return {
+    type: ActionType.RESET_USER_INFO,
+    payload: null
+  };
+};
+export const requireAuthorization = (status) => {
+  return {
+    type: ActionType.REQUIRE_AUTHORIZATION,
+    payload: status
+  };
+};
 
 export {ActionType};
