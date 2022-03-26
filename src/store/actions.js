@@ -13,7 +13,8 @@ const ActionType = {
   REST_MOVIE_COMMENTS: `data/resetMovieComments`,
   LOAD_USER_INFO: `user/loadUserInfo`,
   RESET_USER_INFO: `user/resetUserInfo`,
-  REQUIRE_AUTHORIZATION: `user/requireAuthorization`
+  REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
+  REDIRECT_TO_ROUTE: `process/redirectToRoute`
 };
 
 export const loadMovies = (movies) =>{
@@ -95,6 +96,13 @@ export const requireAuthorization = (status) => {
   return {
     type: ActionType.REQUIRE_AUTHORIZATION,
     payload: status
+  };
+};
+
+export const redirectToRoute = (route) => {
+  return {
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: route
   };
 };
 

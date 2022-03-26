@@ -6,7 +6,7 @@ export const adaptMovieToClient = (movie) => {
     "previewImage": movie[`preview_image`],
     "backgroundImage": movie[`background_image`],
     "backgroundColor": movie[`background_color`],
-    "video": movie[`video_link`],
+    "videoLink": movie[`video_link`],
     "previewVideo": movie[`preview_video_link`],
     "description": movie[`description`],
     "rating": movie[`rating`],

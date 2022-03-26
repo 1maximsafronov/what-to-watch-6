@@ -5,14 +5,19 @@ import {connect} from "react-redux";
 import {getAuthorizationStatus} from "../../store/user-data/selector";
 import {addToFavorite} from "../../store/api-actions";
 import {AuthorizationStatus} from "../../const";
+import {redirectToRoute} from "../../store/actions";
 
 const MovieCardButtons = (props) => {
-  const {isFavorite, movieId, onFavoriteClick, authorizationStatus} = props;
+  const {isFavorite, movieId, onFavoriteClick, authorizationStatus, redirect} = props;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <div className="movie-card__buttons">
-      <button className="btn btn--play movie-card__button" type="button">
+      <button className="btn btn--play movie-card__button" type="button"
+        onClick={() => {
+          redirect(`/player/${movieId}`);
+        }}
+      >
         <svg viewBox="0 0 19 19" width="19" height="19">
           <use xlinkHref="#play-s"></use>
         </svg>
@@ -50,7 +55,8 @@ MovieCardButtons.propTypes = {
   ]).isRequired,
   isFavorite: PropTypes.bool,
   authorizationStatus: PropTypes.string,
-  onFavoriteClick: PropTypes.func
+  onFavoriteClick: PropTypes.func,
+  redirect: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -60,6 +66,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onFavoriteClick(id, status) {
     dispatch(addToFavorite(id, status));
+  },
+  redirect(route) {
+    dispatch(redirectToRoute(route));
   }
 });
 
