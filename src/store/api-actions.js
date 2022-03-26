@@ -1,4 +1,4 @@
-import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovies, loadComments, loadUserInfo, requireAuthorization, resetUserInfo, loadFavorite} from "./actions";
+import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovies, loadComments, loadUserInfo, requireAuthorization, resetUserInfo, loadFavorite, redirectToRoute} from "./actions";
 import {adaptMovieToClient} from "../utils/movies";
 import {adaptCommentToClient} from "../utils/comments";
 import {AuthorizationStatus} from "../const";
@@ -80,6 +80,13 @@ export const fetchFavoriteMovies = () => (dispatch, _getState, api) => {
     .then((response) => {
       const movies = response.data.map(adaptMovieToClient);
       dispatch(loadFavorite(movies));
+    })
+    .catch((err) => {
+      const statusCode = err.response.status;
+      if (statusCode === 401) {
+        dispatch(redirectToRoute(`/login`));
+      }
+      throw err;
     });
 };
 export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
@@ -88,7 +95,14 @@ export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
       const movie = adaptMovieToClient(response.data);
       dispatch(fetchPromoMovie());
       dispatch(loadOneMovie(movie));
-    });
+    })
+      .catch((err) => {
+        const statusCode = err.response.status;
+        if (statusCode === 401) {
+          dispatch(redirectToRoute(`/login`));
+        }
+        throw err;
+      });
 };
 
 
