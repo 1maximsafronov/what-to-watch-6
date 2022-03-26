@@ -7,15 +7,36 @@ import {getMovieById, getMovieLoadedStatus} from "../../store/app-process/select
 import {resetMovieById} from "../../store/actions";
 import {fetchOneMovie} from "../../store/api-actions";
 
+const formatTime = (current) => {
+  let h = Math.floor(current / 60 / 60);
+  let m = Math.floor(current / 60);
+  let s = Math.floor(current % 60);
+
+  if (h < 10) {
+    h = `0${h}`;
+  }
+
+  if (m < 10) {
+    m = `0${m}`;
+  }
+
+  if (s < 10) {
+    s = `0${s}`;
+  }
+
+  return `-${h}:${m}:${s}`;
+};
+
 const MoviePlayerPage = (props) => {
   const {movie, loadData, isDataLoaded} = props;
   const [isVideoLoading, setVideoLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [timer, setTimer] = useState(0);
+  const [duration, setDuration] = useState(0);
   const {id} = useParams();
   const history = useHistory();
   const videoRef = useRef();
-  const {previewImage, videoLink} = movie;
+  const {previewImage, videoLink, name} = movie;
 
   useEffect(() => {
     loadData(id);
@@ -35,15 +56,21 @@ const MoviePlayerPage = (props) => {
     return <p>Loading...</p>;
   }
 
+  const percent = (1 - (timer / duration)) * 100;
+
   return (
     <div className="player">
       <video
         ref={videoRef}
         className="player__video"
         src={videoLink} poster={previewImage}
-        onCanPlayThrough={() => setVideoLoading(false)}
+        onCanPlayThrough={() => {
+          setVideoLoading(false);
+          setDuration(videoRef.current.duration);
+        }}
         onTimeUpdate={() => {
-          setCurrentTime(videoRef.current.currentTime);
+          const newTimer = duration - Math.floor(videoRef.current.currentTime);
+          setTimer(newTimer);
         }}
       />
 
@@ -63,10 +90,10 @@ const MoviePlayerPage = (props) => {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
+            <div className="player__toggler" style={{left: `${percent}%`}}>Toggler</div>
           </div>
           {/* <div className="player__time-value">1:30:29</div> */}
-          <div className="player__time-value">{Math.floor(currentTime)}</div>
+          <div className="player__time-value">{formatTime(timer)}</div>
         </div>
 
         <div className="player__controls-row">
@@ -87,7 +114,7 @@ const MoviePlayerPage = (props) => {
             )}
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
