@@ -3,18 +3,18 @@ import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-import {getMovieById, getMovieLoadedStatus, getSimilarMovies, getSimilarMoviesLoadedStatus, getMovieComments, getCommentsLoadedStatus} from "../../store/app-process/selector";
+import {getMovieById, getMovieLoadedStatus, getSimilarMovies, getSimilarMoviesLoadedStatus, getMovieComments, getCommentsLoadedStatus} from "store/app-process/selector";
+import {fetchOneMovie, fetchSimilarMovies, fetchMovieComments} from "store/api-actions";
+import {resetMovieById, resetSimilarMovies, resetMovieComments} from "store/actions";
 
-import MoviesList from "../movies-list/movies-list";
-import PageFooter from "../page-footer/page-footer";
-import Poster from "../movie-card-poster/movie-card-poster";
-import Buttons from "../movie-card-buttons/movie-card-buttons";
-import MovieDesc from "../movie-desc/movie-desc";
-import PageHeader from "../page-header/page-header";
-import MovieCardBg from "../movie-card-bg/movie-card-bg";
+import MoviesList from "../../blocks/movies-list/movies-list";
+import PageFooter from "../../blocks/page-footer/page-footer";
+import Poster from "../../blocks/movie-card-poster/movie-card-poster";
+import Buttons from "../../blocks/movie-card-buttons/movie-card-buttons";
+import MovieDesc from "../../blocks/movie-desc/movie-desc";
+import PageHeader from "../../blocks/page-header/page-header";
+import MovieCardBg from "../../blocks/movie-card-bg/movie-card-bg";
 
-import {fetchOneMovie, fetchSimilarMovies, fetchMovieComments} from "../../store/api-actions";
-import {resetMovieById, resetSimilarMovies, resetMovieComments} from "../../store/actions";
 
 const MoviePage = (props) => {
   const {

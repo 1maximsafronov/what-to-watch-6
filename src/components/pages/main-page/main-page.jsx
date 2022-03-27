@@ -2,22 +2,19 @@ import React, {Fragment, useState, useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-import {getPromoMovie, getMoviesLoadedStatus, getPromoLoadedStatus} from "../../store/app-data/selector";
-import {getMoviesByGenre} from "../../store/selectors";
+import {getPromoMovie, getMoviesLoadedStatus, getPromoLoadedStatus} from "store/app-data/selector";
+import {getMoviesByGenre} from "store/selectors";
 
-import Poster from "../movie-card-poster/movie-card-poster";
-import Buttons from "../movie-card-buttons/movie-card-buttons";
-import PageFooter from "../page-footer/page-footer";
-import GenresList from "../genres-list/genres-list";
-import MoviesList from "../movies-list/movies-list";
-import PageHeader from "../page-header/page-header";
-import MovieCardBg from "../movie-card-bg/movie-card-bg";
-import ShowMoreButton from "../catalog-show-more/catalog-show-more";
+import PageFooter from "../../blocks/page-footer/page-footer";
+import GenresList from "../../blocks/genres-list/genres-list";
+import MoviesList from "../../blocks/movies-list/movies-list";
+import ShowMoreButton from "../../blocks/catalog-show-more/catalog-show-more";
+
+import PromoMovieCard from "components/blocks/promo-movie-card/promo-movie-card";
 
 const MainPage = (props) => {
 
   const {movies, promoMovie, isMoviesLoaded, isPromoLoaded} = props;
-  const {id, backgroundImage, poster, genre, name, released, backgroundColor, isFavorite} = promoMovie;
 
   if (!isMoviesLoaded || !isPromoLoaded) {
     return <p>Loading...</p>;
@@ -40,29 +37,7 @@ const MainPage = (props) => {
 
   return (
     <Fragment>
-      <section className="movie-card" style={{backgroundColor}}>
-        <MovieCardBg src={backgroundImage} alt={name}/>
-
-        <h1 className="visually-hidden">WTW</h1>
-
-        <PageHeader className="movie-card__head"/>
-
-        <div className="movie-card__wrap">
-          <div className="movie-card__info">
-            <Poster src={poster} alt={name}/>
-
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">{name}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{released}</span>
-              </p>
-
-              <Buttons movieId={id} isFavorite={isFavorite}/>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PromoMovieCard movie={promoMovie}/>
 
       <div className="page-content">
         <section className="catalog">

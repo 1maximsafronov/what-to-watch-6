@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {MovieTab} from "../../const.js";
+import {MovieTab} from "../../../const.js";
 
 import Item from "../movie-nav-item/movie-nav-item";
 

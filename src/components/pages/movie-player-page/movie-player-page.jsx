@@ -3,9 +3,9 @@ import {useParams, useHistory} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getMovieById, getMovieLoadedStatus} from "../../store/app-process/selector";
-import {resetMovieById} from "../../store/actions";
-import {fetchOneMovie} from "../../store/api-actions";
+import {getMovieById, getMovieLoadedStatus} from "store/app-process/selector";
+import {resetMovieById} from "store/actions";
+import {fetchOneMovie} from "store/api-actions";
 
 const formatTime = (current) => {
   let h = Math.floor(current / 60 / 60);

@@ -1,14 +1,14 @@
 import {Router as BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import React from "react";
 
-import browserHistory from "../../browser-history";
+import browserHistory from "browser-history.js";
 
-import MainPage from "../main-page/main-page";
-import LoginPage from "../login-page/login-page";
-import MoviePage from "../movie-page/movie-page";
-import MyListPage from "../my-list-page/my-list-page";
-import AddReviewPage from "../add-review-page/add-review-page";
-import MoviePlayerPage from "../movie-player-page/movie-player-page";
+import MainPage from "../pages/main-page/main-page";
+import LoginPage from "../pages/login-page/login-page";
+import MoviePage from "../pages/movie-page/movie-page";
+import MyListPage from "../pages/my-list-page/my-list-page";
+import AddReviewPage from "../pages/add-review-page/add-review-page";
+import MoviePlayerPage from "../pages/movie-player-page/movie-player-page";
 
 const App = () => {
   return (

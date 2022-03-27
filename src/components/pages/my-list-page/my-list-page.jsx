@@ -2,12 +2,11 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-import {getFavoriteMovies, getFavoriteStatus} from "../../store/app-process/selector";
-import {fetchFavoriteMovies} from "../../store/api-actions";
-
-import PageFooter from "../page-footer/page-footer";
-import MoviesList from "../movies-list/movies-list";
-import PageHeader from "../page-header/page-header";
+import {getFavoriteMovies, getFavoriteStatus} from "store/app-process/selector";
+import {fetchFavoriteMovies} from "store/api-actions";
+import PageFooter from "components/blocks/page-footer/page-footer";
+import MoviesList from "components/blocks/movies-list/movies-list";
+import PageHeader from "components/blocks/page-header/page-header";
 
 const MyListPage = (props) => {
   const {movies, isDataLoaded, onDataLoad} = props;

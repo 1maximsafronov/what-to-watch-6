@@ -1,10 +1,10 @@
 import React from "react";
 
-import AddReviewForm from "../add-review-form/add-review-form";
-import MovieCardBg from "../movie-card-bg/movie-card-bg";
-import Breadcrumbs from "../breadcrumbs/breadcrumbs";
-import PageHeader from "../page-header/page-header";
-import Poster from "../movie-card-poster/movie-card-poster";
+import AddReviewForm from "../../add-review-form/add-review-form";
+import MovieCardBg from "../../blocks/movie-card-bg/movie-card-bg";
+import Breadcrumbs from "../../blocks/breadcrumbs/breadcrumbs";
+import PageHeader from "../../blocks/page-header/page-header";
+import Poster from "../../blocks/movie-card-poster/movie-card-poster";
 
 const AddReviewPage = () => {
   const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;

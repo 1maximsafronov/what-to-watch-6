@@ -24,7 +24,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    modules: ['node_modules', 'src'],
+    extensions: ['.js', '.jsx'],
   },
   devtool: 'source-map',
 };
