@@ -23,7 +23,7 @@ const App = () => {
         <Route exact path={AppRoute.FILMS} component={MoviePage}/>
         <Route exact path={AppRoute.ADD_REVIEW} component={AddReviewPage}/>
         <Route exact path={AppRoute.PLAYER} component={MoviePlayerPage}/>
-        <Route componrnt={PageNotFound}/>
+        <Route component={PageNotFound}/>
       </Switch>
     </Router>
   );
