@@ -1,4 +1,4 @@
-import {Router as BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
 import React from "react";
 
 import browserHistory from "browser-history.js";
@@ -9,23 +9,21 @@ import MoviePage from "../pages/movie-page/movie-page";
 import MyListPage from "../pages/my-list-page/my-list-page";
 import AddReviewPage from "../pages/add-review-page/add-review-page";
 import MoviePlayerPage from "../pages/movie-player-page/movie-player-page";
+import PageNotFound from "../pages/not-found-page/not-found-page";
+
+import {AppRoute} from "const.js";
 
 const App = () => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path="/" component={MainPage}/>
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/films/:id" component={MoviePage}/>
-        <Route exact path="/films/:id/review" component={AddReviewPage}/>
-        <Route exact path="/player/:id" component={MoviePlayerPage}/>
-        <Route exact path="/mylist" component={MyListPage} />
-        <Route render={() => (
-          <div>
-            <h1>404 страница не найдена</h1>
-            <Link to="/">На главну</Link>
-          </div>
-        )}/>
+        <Route exact path={AppRoute.ROOT} component={MainPage}/>
+        <Route exact path={AppRoute.LOGIN} component={LoginPage} />
+        <Route exact path={AppRoute.MYLIST} component={MyListPage} />
+        <Route exact path={AppRoute.FILMS} component={MoviePage}/>
+        <Route exact path={AppRoute.ADD_REVIEW} component={AddReviewPage}/>
+        <Route exact path={AppRoute.PLAYER} component={MoviePlayerPage}/>
+        <Route componrnt={PageNotFound}/>
       </Switch>
     </BrowserRouter>
   );

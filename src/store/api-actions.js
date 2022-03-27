@@ -1,11 +1,12 @@
 import {loadMovies, setGenresList, loadOneMovie, loadPromoMovie, loadSimilarMovies, loadComments, loadUserInfo, requireAuthorization, resetUserInfo, loadFavorite, redirectToRoute} from "./actions";
-import {adaptMovieToClient} from "../utils/movies";
-import {adaptCommentToClient} from "../utils/comments";
+import {adaptMovieToClient, adaptCommentToClient} from "../utils/adapter";
 import {AuthorizationStatus} from "../const";
 import {saveToken, dropToken} from "../service/token";
 
+import {APIRoute, AppRoute} from "../const";
+
 export const checkAuth = () => (dispatch, _getState, api) => {
-  return api.get(`/login`)
+  return api.get(APIRoute.LOGIN)
     .then((response) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(loadUserInfo(response.data));
@@ -15,7 +16,7 @@ export const checkAuth = () => (dispatch, _getState, api) => {
       });
 };
 export const login = (loginData) => (dispatch, _getState, api) => {
-  return api.post(`/login`, {
+  return api.post(APIRoute.LOGIN, {
     "email": loginData.email,
     "password": loginData.password
   })
@@ -25,11 +26,11 @@ export const login = (loginData) => (dispatch, _getState, api) => {
       delete data.token;
       dispatch(loadUserInfo(data));
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(redirectToRoute(`/`));
+      dispatch(redirectToRoute(AppRoute.ROOT));
     });
 };
 export const logout = () => (dispatch, _getState, api) => {
-  return api.delete(`/logout`)
+  return api.delete(APIRoute.LOGOUT)
     .then(() => {
       dropToken();
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -37,7 +38,7 @@ export const logout = () => (dispatch, _getState, api) => {
     });
 };
 export const fetchMovies = () => (dispatch, _getState, api) => {
-  return api.get(`/films`)
+  return api.get(APIRoute.FILMS)
     .then((response) => {
       const movies = response.data.map(adaptMovieToClient);
       dispatch(loadMovies(movies));
@@ -45,35 +46,35 @@ export const fetchMovies = () => (dispatch, _getState, api) => {
     });
 };
 export const fetchOneMovie = (id) => (dispatch, _getState, api) => {
-  return api.get(`/films/${id}`)
+  return api.get(`${APIRoute.FILMS}/${id}`)
     .then((response) => {
       const movie = adaptMovieToClient(response.data);
       dispatch(loadOneMovie(movie));
     });
 };
 export const fetchPromoMovie = () =>(dispatch, _getState, api) => {
-  return api.get(`/promo`)
+  return api.get(APIRoute.PROMO)
     .then((response) => {
       const promoMovie = adaptMovieToClient(response.data);
       dispatch(loadPromoMovie(promoMovie));
     });
 };
 export const fetchSimilarMovies = (id) => (dispatch, _getState, api) => {
-  return api.get(`/films/${id}/similar`)
+  return api.get(`${APIRoute.FILMS}/${id}/similar`)
     .then((response) => {
       const movies = response.data.map(adaptMovieToClient);
       dispatch(loadSimilarMovies(movies));
     });
 };
 export const fetchMovieComments = (id) => (dispatch, _getState, api) => {
-  return api.get(`/comments/${id}`)
+  return api.get(`${APIRoute.REVIEWS}/${id}`)
     .then((response) => {
       const comments = response.data.map(adaptCommentToClient);
       dispatch(loadComments(comments));
     });
 };
 export const fetchFavoriteMovies = () => (dispatch, _getState, api) => {
-  return api.get(`/favorite`)
+  return api.get(APIRoute.FAVORITES)
     .then((response) => {
       const movies = response.data.map(adaptMovieToClient);
       dispatch(loadFavorite(movies));
@@ -81,13 +82,13 @@ export const fetchFavoriteMovies = () => (dispatch, _getState, api) => {
     .catch((err) => {
       const statusCode = err.response.status;
       if (statusCode === 401) {
-        dispatch(redirectToRoute(`/login`));
+        dispatch(redirectToRoute(AppRoute.LOGIN));
       }
       throw err;
     });
 };
 export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
-  return api.post(`/favorite/${id}/${status}`)
+  return api.post(`${APIRoute.FAVORITES}/${id}/${status}`)
     .then((response) => {
       const movie = adaptMovieToClient(response.data);
       dispatch(fetchPromoMovie());
@@ -96,13 +97,13 @@ export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
       .catch((err) => {
         const statusCode = err.response.status;
         if (statusCode === 401) {
-          dispatch(redirectToRoute(`/login`));
+          dispatch(redirectToRoute(AppRoute.LOGIN));
         }
         throw err;
       });
 };
 export const sendNewComment = (id, newComment) => (dispatch, _getState, api) => {
-  return api.post(`/comments/${id}`, newComment)
+  return api.post(`${APIRoute.REVIEWS}/${id}`, newComment)
     .then(() => {
       dispatch(redirectToRoute(`/films/${id}`));
     });
