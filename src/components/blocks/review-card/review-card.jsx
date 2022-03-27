@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+
+import {formatCommentDate, formateDateTime} from "utils/common.js";
+
 
 const ReviewCard = ({comment}) => {
   const {author, text, rating, date} = comment;
 
-  const formatDate = moment(date).format(`MMMM DD, YYYY`);
-  const dateTime = moment(date).format(`YYYY-MM-DD`);
+  const formatDate = formatCommentDate(date);
+  const dateTime = formateDateTime(date);
 
   return (
     <div className="review">
