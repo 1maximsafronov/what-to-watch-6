@@ -7,13 +7,8 @@ import {getMovieById, getMovieLoadedStatus, getSimilarMovies, getSimilarMoviesLo
 import {fetchOneMovie, fetchSimilarMovies, fetchMovieComments} from "store/api-actions";
 import {resetMovieById, resetSimilarMovies, resetMovieComments} from "store/actions";
 
+import MovieCard from "../../blocks/movie-card/movie-card";
 import PageFooter from "../../blocks/page-footer/page-footer";
-import Poster from "../../blocks/movie-card/poster/poster";
-import Buttons from "../../blocks/movie-card/buttons/buttons";
-import MovieDesc from "../../blocks/movie-desc/movie-desc";
-import PageHeader from "../../blocks/page-header/page-header";
-import BgImage from "../../blocks/movie-card/bg-image/bg-image";
-
 import Catalog from "../../blocks/catalog/catalog";
 
 const MoviePage = (props) => {
@@ -44,44 +39,11 @@ const MoviePage = (props) => {
   }
 
 
-  const {poster, name, genre, backgroundImage, backgroundColor, released,
-    isFavorite} = movie;
-
   return (
     <Fragment>
-      <section className="movie-card movie-card--full"
-        style={{backgroundColor}}
-      >
-        <div className="movie-card__hero">
-          <BgImage src={backgroundImage} alt={name}/>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <PageHeader className="movie-card__head"/>
-
-          <div className="movie-card__wrap">
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">{name}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{released}</span>
-              </p>
-
-              <Buttons movieId={id} isFavorite={isFavorite}/>
-            </div>
-          </div>
-        </div>
-
-        <div className="movie-card__wrap movie-card__translate-top">
-          <div className="movie-card__info">
-            <Poster src={poster} alt={name} size="big"/>
-            <MovieDesc movie={movie} comments={movieComments} />
-          </div>
-        </div>
-      </section>
+      <MovieCard moviePage movie={movie} comments={movieComments}/>
 
       <div className="page-content">
-
         <Catalog className="catalog--like-this"
           title="More like this"
           items={similarMovies.slice(0, 4)}

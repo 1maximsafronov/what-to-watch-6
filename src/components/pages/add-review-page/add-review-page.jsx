@@ -7,16 +7,14 @@ import {getAuthorizationStatus} from "store/user-data/selector";
 import {fetchOneMovie, sendNewComment} from "store/api-actions";
 import {AuthorizationStatus} from "const.js";
 
-import Poster from "../../blocks/movie-card/poster/poster";
-import BgImage from "../../blocks/movie-card/bg-image/bg-image";
-import PageHeader from "../../blocks/page-header/page-header";
 // import Breadcrumbs from "../../blocks/breadcrumbs/breadcrumbs";
 import AddReviewForm from "../../blocks/add-review-form/add-review-form";
+import MovieCard from "../../blocks/movie-card/movie-card";
 
 const AddReviewPage = (props) => {
   const {movie, onMovieLoad, isMovieLoaded, onReviewSend, authStatus} = props;
   const {id} = useParams();
-
+  const {id: movieId} = movie;
 
   if (authStatus === AuthorizationStatus.NO_AUTH) {
     return <Redirect to="/login"/>;
@@ -30,37 +28,32 @@ const AddReviewPage = (props) => {
     return <p>Loading...</p>;
   }
 
-  const {backgroundImage, id: movieId, poster, name, backgroundColor} = movie;
+
+  const handleReviewSend = (newReview) => {
+    onReviewSend(movieId, newReview);
+  };
 
   return (
-    <section className="movie-card movie-card--full" style={{backgroundColor}}>
-      <div className="movie-card__header">
-        <BgImage src={backgroundImage} alt={name}/>
-
-        <h1 className="visually-hidden">WTW</h1>
-        <PageHeader>
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <Link to={`/films/${movieId}`} className="breadcrumbs__link">
-                  {name}
-                </Link>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
-        </PageHeader>
-
-        <Poster src={poster} alt={name} size="small"/>
-      </div>
-
-      <AddReviewForm onSubmit={(newReview) => {
-        onReviewSend(movieId, newReview);
-      }}/>
-
-    </section>
+    <MovieCard
+      fullPage
+      reviewPage
+      movie={movie}
+      renderBreadcrumbs={() => (
+        <nav className="breadcrumbs">
+          <ul className="breadcrumbs__list">
+            <li className="breadcrumbs__item">
+              <Link to={`/films/${movieId}`} className="breadcrumbs__link">
+                {name}
+              </Link>
+            </li>
+            <li className="breadcrumbs__item">
+              <a className="breadcrumbs__link">Add review</a>
+            </li>
+          </ul>
+        </nav>
+      )}
+      renderReviewForm={() => <AddReviewForm onSubmit={handleReviewSend}/>}
+    />
   );
 };
 

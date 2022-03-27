@@ -7,7 +7,7 @@ import {getMoviesByGenre} from "store/selectors";
 
 import PageFooter from "../../blocks/page-footer/page-footer";
 import Catalog from "components/blocks/catalog/catalog";
-import PromoMovieCard from "components/blocks/promo-movie-card/promo-movie-card";
+import MovieCard from "../../blocks/movie-card/movie-card";
 
 import {withShowMore} from "hocs/with-show-more/with-show-more";
 import {withGenresList} from "hocs/with-genres-list/with-genres-list";
@@ -24,7 +24,7 @@ const MainPage = (props) => {
 
   return (
     <Fragment>
-      <PromoMovieCard movie={promoMovie}/>
+      <MovieCard promo movie={promoMovie}/>
 
       <div className="page-content">
         <CatalogWrapped items={movies}/>
