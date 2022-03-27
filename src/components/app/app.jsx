@@ -17,7 +17,7 @@ const App = () => {
         <Route exact path="/" component={MainPage}/>
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/films/:id" component={MoviePage}/>
-        <Route exact path="/add-review" component={AddReviewPage}/>
+        <Route exact path="/films/:id/review" component={AddReviewPage}/>
         <Route exact path="/player/:id" component={MoviePlayerPage}/>
         <Route exact path="/mylist" component={MyListPage} />
         <Route render={() => (

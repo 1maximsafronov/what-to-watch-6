@@ -42,7 +42,9 @@ const MovieCardButtons = (props) => {
         <span>My list</span>
       </button>
       {isAuthorized && (
-        <Link to="/add-review" className="btn movie-card__button">Add review</Link>
+        <Link to={`/films/${movieId}/review`} className="btn movie-card__button">
+          Add review
+        </Link>
       )}
 
     </div>

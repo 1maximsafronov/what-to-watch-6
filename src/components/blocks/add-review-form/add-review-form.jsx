@@ -1,10 +1,47 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import PropTypes from "prop-types";
 
-const AddReviewForm = () => {
+const MIN_TEXT_LENGTH = 50;
+const MAX_TEXT_LENGTH = 400;
+
+const AddReviewForm = ({onSubmit}) => {
+  const [isFormValid, setFormValid] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [text, setText] = useState(``);
+
+  useEffect(() => {
+    if (text.length > MIN_TEXT_LENGTH && text.length < MAX_TEXT_LENGTH && rating !== 0) {
+      setFormValid(true);
+      return;
+    }
+    setFormValid(false);
+
+  }, [rating, text]);
+
+  const ratingChangeHandler = (evt) => {
+    if (evt.target.tagName === `INPUT`) {
+      setRating(evt.target.value);
+    }
+  };
+
+  const textChangeHandler = (evt) => {
+    const value = evt.target.value;
+    if (value.length < 400) {
+      setText(evt.target.value);
+    }
+  };
+
+  const formSubmitHandler = (evt) => {
+    evt.preventDefault();
+    if (isFormValid) {
+      onSubmit({rating, comment: text});
+    }
+  };
+
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
-        <div className="rating">
+      <form onSubmit={formSubmitHandler} action="#" className="add-review__form">
+        <div className="rating" onChange={ratingChangeHandler}>
           <div className="rating__stars">
             <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
             <label className="rating__label" htmlFor="star-1">Rating 1</label>
@@ -12,7 +49,7 @@ const AddReviewForm = () => {
             <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
             <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-            <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
+            <input className="rating__input" id="star-3" type="radio" name="rating" value="3" />
             <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
             <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
@@ -27,7 +64,7 @@ const AddReviewForm = () => {
             <input className="rating__input" id="star-7" type="radio" name="rating" value="7" />
             <label className="rating__label" htmlFor="star-7">Rating 7</label>
 
-            <input className="rating__input" id="star-8" type="radio" name="rating" value="8" checked />
+            <input className="rating__input" id="star-8" type="radio" name="rating" value="8" />
             <label className="rating__label" htmlFor="star-8">Rating 8</label>
 
             <input className="rating__input" id="star-9" type="radio" name="rating" value="9" />
@@ -39,15 +76,28 @@ const AddReviewForm = () => {
         </div>
 
         <div className="add-review__text">
-          <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+          <textarea className="add-review__textarea"
+            placeholder="Review text"
+            name="review-text"
+            id="review-text"
+            onChange={textChangeHandler}
+            value={text}
+          />
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button disabled={!isFormValid} className="add-review__btn" type="submit">
+              Post <small>({text.length}/{MAX_TEXT_LENGTH})</small>
+              {!isFormValid && `!`}
+            </button>
           </div>
 
         </div>
       </form>
     </div>
   );
+};
+
+AddReviewForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default AddReviewForm;

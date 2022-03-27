@@ -100,6 +100,12 @@ export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
         throw err;
       });
 };
+export const sendNewComment = (id, newComment) => (dispatch, _getState, api) => {
+  return api.post(`/comments/${id}`, newComment)
+    .then(() => {
+      dispatch(redirectToRoute(`/films/${id}`));
+    });
+};
 
 
 /*
