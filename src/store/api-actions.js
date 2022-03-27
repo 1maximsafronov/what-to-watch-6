@@ -25,6 +25,7 @@ export const login = (loginData) => (dispatch, _getState, api) => {
       delete data.token;
       dispatch(loadUserInfo(data));
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(redirectToRoute(`/`));
     });
 };
 export const logout = () => (dispatch, _getState, api) => {
