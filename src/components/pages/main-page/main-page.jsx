@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from "react";
+import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
@@ -7,10 +7,12 @@ import {getMoviesByGenre} from "store/selectors";
 
 import PageFooter from "../../blocks/page-footer/page-footer";
 import GenresList from "../../blocks/genres-list/genres-list";
-import MoviesList from "../../blocks/movies-list/movies-list";
-import ShowMoreButton from "../../blocks/catalog-show-more/catalog-show-more";
-
+import Catalog from "components/blocks/catalog/catalog";
 import PromoMovieCard from "components/blocks/promo-movie-card/promo-movie-card";
+
+import {withShowMore} from "hocs/with-show-more/with-show-more";
+
+const CatalogWrapped = withShowMore(Catalog);
 
 const MainPage = (props) => {
 
@@ -20,35 +22,18 @@ const MainPage = (props) => {
     return <p>Loading...</p>;
   }
 
-  const movieCount = movies.length;
-
-  const [showingMovieCard, setShowingMovieCards] = useState(Math.min(8, movieCount));
-
-  const isShowMoreBtn = showingMovieCard < movieCount;
-
-  useEffect(() => {
-    setShowingMovieCards(Math.min(8, movieCount));
-  }, [movies]);
-
-  const showMoreBtnClickHandler = () =>{
-    const newShowingCards = Math.min(showingMovieCard + 20, movieCount);
-    setShowingMovieCards(newShowingCards);
-  };
-
   return (
     <Fragment>
       <PromoMovieCard movie={promoMovie}/>
 
       <div className="page-content">
-        <section className="catalog">
+        {/* <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList />
           <MoviesList movies={movies.slice(0, showingMovieCard)} />
-          {isShowMoreBtn && (
-            <ShowMoreButton onClick={showMoreBtnClickHandler} />
-          )}
-        </section>
+        </section> */}
 
+        <CatalogWrapped items={movies}/>
         <PageFooter />
       </div>
     </Fragment>

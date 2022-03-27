@@ -7,7 +7,6 @@ import {getMovieById, getMovieLoadedStatus, getSimilarMovies, getSimilarMoviesLo
 import {fetchOneMovie, fetchSimilarMovies, fetchMovieComments} from "store/api-actions";
 import {resetMovieById, resetSimilarMovies, resetMovieComments} from "store/actions";
 
-import MoviesList from "../../blocks/movies-list/movies-list";
 import PageFooter from "../../blocks/page-footer/page-footer";
 import Poster from "../../blocks/movie-card/poster/poster";
 import Buttons from "../../blocks/movie-card/buttons/buttons";
@@ -15,6 +14,7 @@ import MovieDesc from "../../blocks/movie-desc/movie-desc";
 import PageHeader from "../../blocks/page-header/page-header";
 import BgImage from "../../blocks/movie-card/bg-image/bg-image";
 
+import Catalog from "../../blocks/catalog/catalog";
 
 const MoviePage = (props) => {
   const {
@@ -81,10 +81,12 @@ const MoviePage = (props) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <MoviesList movies={similarMovies.slice(0, 4)} />
-        </section>
+
+        <Catalog className="catalog--like-this"
+          title="More like this"
+          items={similarMovies.slice(0, 4)}
+        />
+
         <PageFooter/>
       </div>
     </Fragment>

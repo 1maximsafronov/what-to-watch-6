@@ -4,9 +4,11 @@ import PropTypes from "prop-types";
 
 import {getFavoriteMovies, getFavoriteStatus} from "store/app-process/selector";
 import {fetchFavoriteMovies} from "store/api-actions";
+
 import PageFooter from "components/blocks/page-footer/page-footer";
-import MoviesList from "components/blocks/movies-list/movies-list";
 import PageHeader from "components/blocks/page-header/page-header";
+import Catalog from "../../blocks/catalog/catalog";
+
 
 const MyListPage = (props) => {
   const {movies, isDataLoaded, onDataLoad} = props;
@@ -25,10 +27,7 @@ const MyListPage = (props) => {
         <h1 className="page-title user-page__title">My list</h1>
       </PageHeader>
 
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesList movies={movies}/>
-      </section>
+      <Catalog items={movies}/>
 
       <PageFooter/>
     </div>

@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const CatalogShowMore = ({onClick}) => {
+const CatalogShowMore = ({onClick, hide}) => {
+  if (hide) {
+    return null;
+  }
+
   return (
     <div className="catalog__more">
       <button onClick={onClick} className="catalog__button" type="button">
@@ -12,7 +16,8 @@ const CatalogShowMore = ({onClick}) => {
 };
 
 CatalogShowMore.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  hide: PropTypes.bool,
 };
 
 export default CatalogShowMore;
