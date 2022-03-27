@@ -1,9 +1,11 @@
 import React, {useEffect} from "react";
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getMovieById, getMovieLoadedStatus} from "store/app-process/selector";
+import {getAuthorizationStatus} from "store/user-data/selector";
 import {fetchOneMovie, sendNewComment} from "store/api-actions";
+import {AuthorizationStatus} from "const.js";
 
 import Poster from "../../blocks/movie-card/poster/poster";
 import BgImage from "../../blocks/movie-card/bg-image/bg-image";
@@ -11,8 +13,14 @@ import PageHeader from "../../blocks/page-header/page-header";
 // import Breadcrumbs from "../../blocks/breadcrumbs/breadcrumbs";
 import AddReviewForm from "../../blocks/add-review-form/add-review-form";
 
-const AddReviewPage = ({movie, onMovieLoad, isMovieLoaded, onReviewSend}) => {
+const AddReviewPage = (props) => {
+  const {movie, onMovieLoad, isMovieLoaded, onReviewSend, authStatus} = props;
   const {id} = useParams();
+
+
+  if (authStatus === AuthorizationStatus.NO_AUTH) {
+    return <Redirect to="/login"/>;
+  }
 
   useEffect(() => {
     onMovieLoad(id);
@@ -61,11 +69,13 @@ AddReviewPage.propTypes = {
   onMovieLoad: PropTypes.func,
   onReviewSend: PropTypes.func,
   isMovieLoaded: PropTypes.bool,
+  authStatus: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   movie: getMovieById(state),
-  isMovieLoaded: getMovieLoadedStatus(state)
+  isMovieLoaded: getMovieLoadedStatus(state),
+  authStatus: getAuthorizationStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

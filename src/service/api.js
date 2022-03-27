@@ -5,10 +5,13 @@ const Error = {
   UNAUTHORIZED: 401
 };
 
+const BASE_URL = `https://9.react.pages.academy/wtw`;
+const TIMEOUT = 1000 * 5;
+
 export const createAPI = (onUnauthorized) => {
   const api = Axios.create({
-    baseURL: `https://7.react.pages.academy/wtw`,
-    timeout: 1000 * 5,
+    baseURL: BASE_URL,
+    timeout: TIMEOUT,
     withCredentials: true,
   });
 

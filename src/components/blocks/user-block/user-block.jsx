@@ -18,12 +18,14 @@ const UserBlock = (props) => {
     );
   }
 
+  // const avatar = userInfo[`avatar_url`];
+  const avatar = userInfo[`avatarUrl`];
 
   return (
     <div className="user-block">
       <div className="user-block__avatar">
         <Link to="/mylist">
-          <img src={userInfo[`avatar_url`]} alt="User avatar" width="63" height="63" />
+          <img src={avatar} alt="User avatar" width="63" height="63" />
         </Link>
       </div>
     </div>
