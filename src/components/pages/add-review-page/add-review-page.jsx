@@ -1,10 +1,10 @@
 import React from "react";
 
-import AddReviewForm from "../../add-review-form/add-review-form";
-import MovieCardBg from "../../blocks/movie-card-bg/movie-card-bg";
-import Breadcrumbs from "../../blocks/breadcrumbs/breadcrumbs";
+import Poster from "../../blocks/movie-card/poster/poster";
+import BgImage from "../../blocks/movie-card/bg-image/bg-image";
 import PageHeader from "../../blocks/page-header/page-header";
-import Poster from "../../blocks/movie-card-poster/movie-card-poster";
+import Breadcrumbs from "../../blocks/breadcrumbs/breadcrumbs";
+import AddReviewForm from "../../blocks/add-review-form/add-review-form";
 
 const AddReviewPage = () => {
   const backgroundImage = `img/bg-the-grand-budapest-hotel.jpg`;
@@ -14,7 +14,7 @@ const AddReviewPage = () => {
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
-        <MovieCardBg src={backgroundImage} alt={name}/>
+        <BgImage src={backgroundImage} alt={name}/>
 
         <h1 className="visually-hidden">WTW</h1>
         <PageHeader>

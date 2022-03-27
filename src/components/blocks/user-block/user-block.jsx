@@ -3,8 +3,8 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getAuthorizationStatus, getUserInfo} from "../../../store/user-data/selector";
-import {AuthorizationStatus} from "../../../const";
+import {getAuthorizationStatus, getUserInfo} from "store/user-data/selector";
+import {AuthorizationStatus} from "const";
 
 const UserBlock = (props) => {
   const {authorizationStatus, userInfo} = props;
@@ -18,13 +18,12 @@ const UserBlock = (props) => {
     );
   }
 
-  const avatar = userInfo[`avatar_url`];
 
   return (
     <div className="user-block">
       <div className="user-block__avatar">
         <Link to="/mylist">
-          <img src={avatar} alt="User avatar" width="63" height="63" />
+          <img src={userInfo[`avatar_url`]} alt="User avatar" width="63" height="63" />
         </Link>
       </div>
     </div>

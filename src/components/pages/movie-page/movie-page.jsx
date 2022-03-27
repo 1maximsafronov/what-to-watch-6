@@ -9,11 +9,11 @@ import {resetMovieById, resetSimilarMovies, resetMovieComments} from "store/acti
 
 import MoviesList from "../../blocks/movies-list/movies-list";
 import PageFooter from "../../blocks/page-footer/page-footer";
-import Poster from "../../blocks/movie-card-poster/movie-card-poster";
-import Buttons from "../../blocks/movie-card-buttons/movie-card-buttons";
+import Poster from "../../blocks/movie-card/poster/poster";
+import Buttons from "../../blocks/movie-card/buttons/buttons";
 import MovieDesc from "../../blocks/movie-desc/movie-desc";
 import PageHeader from "../../blocks/page-header/page-header";
-import MovieCardBg from "../../blocks/movie-card-bg/movie-card-bg";
+import BgImage from "../../blocks/movie-card/bg-image/bg-image";
 
 
 const MoviePage = (props) => {
@@ -53,7 +53,7 @@ const MoviePage = (props) => {
         style={{backgroundColor}}
       >
         <div className="movie-card__hero">
-          <MovieCardBg src={backgroundImage} alt={name}/>
+          <BgImage src={backgroundImage} alt={name}/>
 
           <h1 className="visually-hidden">WTW</h1>
 

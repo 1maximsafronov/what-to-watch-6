@@ -4,7 +4,9 @@ import React from "react";
 const CatalogShowMore = ({onClick}) => {
   return (
     <div className="catalog__more">
-      <button onClick={onClick} className="catalog__button" type="button">Show more</button>
+      <button onClick={onClick} className="catalog__button" type="button">
+        Show more
+      </button>
     </div>
   );
 };

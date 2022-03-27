@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {changeGenreFilter} from "../../../store/actions";
-import {getGenresList, getCurrentGenre} from "../../../store/app-process/selector";
+import {changeGenreFilter} from "store/actions";
+import {getGenresList, getCurrentGenre} from "store/app-process/selector";
 
-import Item from "../genres-list-item/genres-list-item";
+import Item from "./item/item";
 
 const GenresList = ({items, onGenreChange, currentGenre}) => {
   return (

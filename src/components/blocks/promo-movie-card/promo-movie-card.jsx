@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import MovieCardBg from "../movie-card-bg/movie-card-bg";
+import BgImage from "../movie-card/bg-image/bg-image";
 import PageHeader from "../page-header/page-header";
-import Buttons from "../movie-card-buttons/movie-card-buttons";
-import Poster from "../movie-card-poster/movie-card-poster";
+import Buttons from "../movie-card/buttons/buttons";
+import Poster from "../movie-card/poster/poster";
 
 const PromoMovieCard = ({movie}) => {
   const {
@@ -20,7 +20,7 @@ const PromoMovieCard = ({movie}) => {
 
   return (
     <section className="movie-card" style={{backgroundColor}}>
-      <MovieCardBg src={backgroundImage} alt={name}/>
+      <BgImage src={backgroundImage} alt={name}/>
 
       <h1 className="visually-hidden">WTW</h1>
 

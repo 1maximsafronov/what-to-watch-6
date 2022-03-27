@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {formatRunTime} from "../../../utils/movies";
+import {formatRunTime} from "utils/movies";
 
 const MovieDetails = ({movie}) => {
   const {director, genre, released, starring, runTime} = movie;

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {MovieTab} from "../../../const.js";
+import {MovieTab} from "const.js";
 
-import Item from "../movie-nav-item/movie-nav-item";
+import Item from "./item/item";
 
 const MovieNav = (props) => {
   const {items, activeItem, onItemChange} = props;

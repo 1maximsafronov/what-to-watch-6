@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
-import {getRatinLevel} from "../../../utils/movies";
+import {getRatinLevel} from "utils/movies";
 
 const MovieOverView = (props) => {
   const {movie} = props;

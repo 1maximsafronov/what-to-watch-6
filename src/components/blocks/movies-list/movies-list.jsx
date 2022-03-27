@@ -7,9 +7,13 @@ const MoviesList = (props) => {
   const {movies} = props;
   return (
     <div className="catalog__movies-list">
-      {movies.map((movie, i) => {
-        return <SmallMovieCard key={`movei-${movie.id}-${i}`} movie={movie}/>;
-      })}
+      {movies.map((movie, i) => (
+        <SmallMovieCard
+          className="catalog__movies-card"
+          key={`movei-${movie.id}-${i}`}
+          movie={movie}
+        />
+      ))}
     </div>
   );
 };
