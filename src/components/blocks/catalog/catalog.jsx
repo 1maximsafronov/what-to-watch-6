@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MoviesList from "../movies-list/movies-list";
 import classNames from "classnames";
+
+import MoviesList from "./movies-list/movies-list";
 
 const Catalog = (props) => {
   const {items, title, renderShowMoreBtn, renderGenresList, className} = props;

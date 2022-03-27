@@ -6,13 +6,13 @@ import {getPromoMovie, getMoviesLoadedStatus, getPromoLoadedStatus} from "store/
 import {getMoviesByGenre} from "store/selectors";
 
 import PageFooter from "../../blocks/page-footer/page-footer";
-import GenresList from "../../blocks/genres-list/genres-list";
 import Catalog from "components/blocks/catalog/catalog";
 import PromoMovieCard from "components/blocks/promo-movie-card/promo-movie-card";
 
 import {withShowMore} from "hocs/with-show-more/with-show-more";
+import {withGenresList} from "hocs/with-genres-list/with-genres-list";
 
-const CatalogWrapped = withShowMore(Catalog);
+const CatalogWrapped = withGenresList(withShowMore(Catalog));
 
 const MainPage = (props) => {
 
@@ -27,13 +27,8 @@ const MainPage = (props) => {
       <PromoMovieCard movie={promoMovie}/>
 
       <div className="page-content">
-        {/* <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresList />
-          <MoviesList movies={movies.slice(0, showingMovieCard)} />
-        </section> */}
-
         <CatalogWrapped items={movies}/>
+
         <PageFooter />
       </div>
     </Fragment>
