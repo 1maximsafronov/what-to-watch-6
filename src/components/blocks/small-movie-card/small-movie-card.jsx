@@ -3,13 +3,12 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import classNames from "classnames";
 
-const SmallMovieCard = (props) => {
-  const {movie, className} = props;
+const SmallMovieCard = ({movie, className}) => {
   const {id, name, previewImage} = movie;
-  const cardClasName = classNames(`small-movie-card`, className);
+  const cardClassName = classNames(`small-movie-card`, className);
 
   return (
-    <article className={cardClasName}>
+    <article className={cardClassName}>
       <Link to={`/films/${id}`}>
         <div className="small-movie-card__image">
           <img src={previewImage} alt={name} width="280" height="175" />
