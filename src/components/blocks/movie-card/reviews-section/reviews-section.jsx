@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Review from "../review-card/review-card";
+import Review from "../../review-card/review-card";
 
 const MovieReviews = ({comments}) => {
   const middle = comments.length / 2;

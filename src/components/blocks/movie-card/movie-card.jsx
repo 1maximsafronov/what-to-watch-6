@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import PageHeader from "../page-header/page-header";
-import MovieDesc from "../movie-desc/movie-desc";
+import MovieTabs from "./movie-tabs/movie-tabs";
 import MetaInfo from "./meta-info/meta-info";
 import BgImage from "./bg-image/bg-image";
 import Buttons from "./buttons/buttons";
@@ -76,7 +76,7 @@ const MovieCard = (props) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <Poster src={poster} alt={name} size="big"/>
-          <MovieDesc movie={movie} comments={comments} />
+          <MovieTabs movie={movie} comments={comments} />
         </div>
       </div>
     </Fragment>

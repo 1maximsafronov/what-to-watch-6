@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import {getRatinLevel} from "utils/movies";
 
-const MovieOverView = (props) => {
+const MovieOverview = (props) => {
   const {movie} = props;
   const {rating, scores, starring, director, description} = movie;
 
@@ -33,8 +33,8 @@ const MovieOverView = (props) => {
   );
 };
 
-MovieOverView.propTypes = {
+MovieOverview.propTypes = {
   movie: PropTypes.object
 };
 
-export default MovieOverView;
+export default MovieOverview;
