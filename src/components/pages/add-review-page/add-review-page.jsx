@@ -13,6 +13,7 @@ import MovieCard from "../../blocks/movie-card/movie-card";
 
 const AddReviewPage = (props) => {
   const {movie, onMovieLoad, isMovieLoaded, onReviewSend, authStatus} = props;
+  const {name} = movie;
   const {id} = useParams();
   const {id: movieId} = movie;
 

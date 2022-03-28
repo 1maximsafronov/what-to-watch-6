@@ -49,3 +49,14 @@ export const formatDuration = (current) => {
 
   return `${h}:${m}:${s}`;
 };
+
+
+export const checkEmail = (email) => {
+  let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  let address = email;
+  if (reg.test(address) === false) {
+    return false;
+  }
+
+  return true;
+};
