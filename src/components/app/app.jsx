@@ -10,6 +10,7 @@ import MyListPage from "../pages/my-list-page/my-list-page";
 import PageNotFound from "../pages/not-found-page/not-found-page";
 import AddReviewPage from "../pages/add-review-page/add-review-page";
 import MoviePlayerPage from "../pages/movie-player-page/movie-player-page";
+import PrivateRoute from "components/blocks/private-route/private-route";
 
 import {AppRoute} from "const.js";
 
@@ -19,9 +20,11 @@ const App = () => {
       <Switch>
         <Route exact path={AppRoute.ROOT} component={MainPage}/>
         <Route exact path={AppRoute.LOGIN} component={LoginPage} />
-        <Route exact path={AppRoute.MYLIST} component={MyListPage} />
+        <PrivateRoute exact path={AppRoute.MYLIST}
+          render={()=><MyListPage/>} />
         <Route exact path={AppRoute.FILMS} component={MoviePage}/>
-        <Route exact path={AppRoute.ADD_REVIEW} component={AddReviewPage}/>
+        <PrivateRoute exact path={AppRoute.ADD_REVIEW}
+          render={()=><AddReviewPage />}/>
         <Route exact path={AppRoute.PLAYER} component={MoviePlayerPage}/>
         <Route component={PageNotFound}/>
       </Switch>

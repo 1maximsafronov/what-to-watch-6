@@ -22,7 +22,7 @@ const MovieDesc = (props) => {
       case MovieTab.DETAILS:
         return <DetailsSection movie={movie} />;
       case MovieTab.REVIEWS:
-        return <ReviewsSection movie={movie} comments={comments} />;
+        return <ReviewsSection comments={comments} />;
     }
 
     return null;
