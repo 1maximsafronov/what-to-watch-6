@@ -93,6 +93,7 @@ export const addToFavorite = (id, status) =>(dispatch, _getState, api) => {
       const movie = adaptMovieToClient(response.data);
       dispatch(fetchPromoMovie());
       dispatch(loadOneMovie(movie));
+      dispatch(fetchFavoriteMovies());
     })
       .catch((err) => {
         const statusCode = err.response.status;
